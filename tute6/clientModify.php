@@ -71,6 +71,20 @@
 
         case "ConfirmDelete":
             $query="DELETE FROM client WHERE clientID =".$_GET["clientID"];
-            $result = $conn->query(($query));
-            header("Location: displayClient.php");
+if($conn->query($query))
+{
+?>
+<center>
+    The following customer record has been successfully deleted<p />
+    <?php
+    echo "Customer:  $row[gName] $row[fName]";
+    echo "</center><p />";
+    }
+    else
+    {
+        echo "<center>Error Contacting Data Base<p /></center>";
+    }
+    echo "<center><input type='button' value='Return to List' OnClick='window.location=\"displayClient.php\"'></center>";
+    break;
+
  } ?>
