@@ -8,12 +8,6 @@
  * Time: 12:16 PM
  */
 
-/**
- * Created by PhpStorm.
- * User: Jordan
- * Date: 28/08/2018
- * Time: 11:47 AM
- */
 
     include("connection.php");
     $conn = new mysqli($HOST, $UName, $PWord, $DB);
@@ -21,7 +15,7 @@
     $result = $conn->query($query);
     ?>
 <table border="1">
-    <th>Property Type</th>
+    <th>Client</th>
     <?php while ($row = mysqli_fetch_array($result))
     { ?>
         <tr>
@@ -36,11 +30,11 @@
             <td><?php echo $row["email"]?></td>
             <td><?php echo $row["mobile"]?></td>
             <td><?php echo $row["mailingList"]?></td>
+            <td><a href="clientModify.php?clientID=<?php echo $row["clientID"]; ?>&Action=UPDATE">Update</a></td>
+            <td><a href="clientModify.php?clientID=<?php echo $row["clientID"]; ?>&Action=DELETE">Delete</a></td>
 
         </tr>
-
     <?php } ?>
-
 </table>
 
 
