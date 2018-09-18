@@ -31,24 +31,24 @@ switch($strAction)
                     <td><input type="text" name="unitNum" size="50"></td>
                 </tr>
                 <tr>
-                    <td>Street Number</td>
+                    <td>Street Number *</td>
                     <td><input type="text" name="streetNum" size="50"></td>
                 </tr>
                 <tr>
-                    <td>Street Name</td>
+                    <td>Street Name *</td>
                     <td><input type="text" name="street" size="50"></td>
                 </tr>
                 <tr>
-                    <td>Suburb</td>
+                    <td>Suburb *</td>
                     <td><input type="text" name="suburb" size="50"></td>
                 </tr>
                 <tr>
-                    <td>State</td>
+                    <td>State *</td>
                     <td><input type="text" name="state" size="50"></td>
                 </tr>
 
                 <tr>
-                    <td>Postcode</td>
+                    <td>Postcode *</td>
                     <td><input type="text" name="postcode" size="50"></td>
                 </tr>
                 <tr>
@@ -72,7 +72,7 @@ switch($strAction)
                 </tr>
 
                 <tr>
-                    <td>Listing Price</td>
+                    <td>Listing Price (Double)</td>
                     <td><input type="text" name="listPrice" size="50"></td>
                 </tr>
                 <tr>
