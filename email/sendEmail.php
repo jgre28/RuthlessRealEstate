@@ -11,7 +11,7 @@
 
 include("connection.php");
 $conn = new mysqli($HOST, $UName, $PWord, $DB);
-$query= "SELECT clientID, gName, fName, email, mailingList FROM client ORDER BY fName";
+$query= "SELECT gName, fName, email, mailingList FROM client ORDER BY fName";
 $result = $conn->query($query);
 
 ini_set('SMTP', 'smtp.monash.edu.au');
@@ -50,7 +50,7 @@ if ((empty($_POST["subject"])) || (empty($_POST["message"])))
                     <td><?php echo $row["email"]?></td>
 
                     <td><?php echo $row["mailingList"]?></td>
-                    <td align="center"><input type="checkbox" name="check[]" value="<?php echo $row["clientID"]; ?>"></td>
+                    <td align="center"><input type="checkbox" name="check[]" value="<?php echo $row["email"]; ?>"></td>
                 </tr>
             <?php } ?>
         </table>
