@@ -11,7 +11,7 @@
 
 include("connection.php");
 $conn = new mysqli($HOST, $UName, $PWord, $DB);
-$query= "SELECT gName, fName, email, mailingList FROM client ORDER BY fName";
+$query= "SELECT clientID, gName, fName, email, mailingList FROM client ORDER BY fName";
 $result = $conn->query($query);
 
 ini_set('SMTP', 'smtp.monash.edu.au');
@@ -29,11 +29,10 @@ ini_set('sendmail_from', 'jgre28@student.monash.edu')
             <td><?php echo $row["email"]?></td>
 
             <td><?php echo $row["mailingList"]?></td>
-
+            <td align="center"><input type="checkbox" name="check[]" value="<?php echo $row["clientID"]; ?>"></td>
         </tr>
     <?php } ?>
     </table>
-
     <?php
 
 
@@ -42,6 +41,20 @@ if ((empty($_POST["subject"])) || (empty($_POST["message"])))
     ?>
 
     <form method="post" action="sendEmail.php">
+        <table class="table table-striped">
+            <?php while ($row = mysqli_fetch_array($result))
+            { ?>
+                <tr>
+                    <td><?php echo $row["gName"]?></td>
+                    <td><?php echo $row["fName"]?></td>
+                    <td><?php echo $row["email"]?></td>
+
+                    <td><?php echo $row["mailingList"]?></td>
+                    <td align="center"><input type="checkbox" name="check[]" value="<?php echo $row["clientID"]; ?>"></td>
+                </tr>
+            <?php } ?>
+        </table>
+
         <table border="0" width="100%">
             <tr>
                 <td>From</td>
@@ -69,12 +82,12 @@ if ((empty($_POST["subject"])) || (empty($_POST["message"])))
 }
 else
 {
-    //$to = "jgre28@student.monash.edu, papax1@student.monash.edu";
+    $to = "Ruthless Real Estate <jgre28@student.monash.edu.au>";
     $msg = $_POST["message"];
     $subject = $_POST["subject"];
     $headers = "From: Ruthless Real Estate <jgre28@student.monash.edu.au>"."\r\n".
         "Bcc: papax1@student.monash.edu, jgre28@student.monash.edu";
-    if(mail("", $subject, $msg, $headers))
+    if(mail($to, $subject, $msg, $headers))
     {
         echo "Mail Sent";
     }
