@@ -13,6 +13,9 @@ include("connection.php");
 $conn = new mysqli($HOST, $UName, $PWord, $DB);
 $query= "SELECT gName, fName, email, mailingList FROM client ORDER BY fName";
 $result = $conn->query($query);
+
+ini_set('SMTP', 'smtp.monash.edu.au');
+ini_set('sendmail_from', 'jgre28@student.monash.edu')
 ?>
 
 <div class="container">
@@ -34,15 +37,15 @@ $result = $conn->query($query);
     <?php
 
 
-if (!isset($_POST["to"]))
+if ((empty($_POST["subject"])) || (empty($_POST["message"])))
 {
     ?>
 
     <form method="post" action="sendEmail.php">
         <table border="0" width="100%">
             <tr>
-                <td>To</td>
-                <td><input type="text" name="to" size="45"></td>
+                <td>From</td>
+                <td>Ruthless Real Estate</td>
             </tr>
             <tr>
                 <td>Subject</td>
@@ -66,11 +69,12 @@ if (!isset($_POST["to"]))
 }
 else
 {
-    $from = "Jordan <jgre28@student.monash.edu.au>";
-    $to = $_POST["to"];
+    //$to = "jgre28@student.monash.edu, papax1@student.monash.edu";
     $msg = $_POST["message"];
     $subject = $_POST["subject"];
-    if(mail($to, $subject, $msg, $from))
+    $headers = "From: Ruthless Real Estate <jgre28@student.monash.edu.au>"."\r\n".
+        "Bcc: papax1@student.monash.edu, jgre28@student.monash.edu";
+    if(mail("", $subject, $msg, $headers))
     {
         echo "Mail Sent";
     }
