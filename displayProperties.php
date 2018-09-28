@@ -30,7 +30,6 @@ $result = $conn->query($query);
             <th></th>
 
 
-
         </tr>
         <?php while ($row = mysqli_fetch_array($result))
         {
