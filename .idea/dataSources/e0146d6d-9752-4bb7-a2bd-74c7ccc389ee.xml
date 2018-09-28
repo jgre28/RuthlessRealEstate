@@ -1223,12 +1223,14 @@ featureID</ColNames>
       <RefSchemaName>s25099159</RefSchemaName>
       <RefTableName>property</RefTableName>
       <RefColNames>propertyID</RefColNames>
+      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <foreign-key id="282" parent="230" name="PROPERTY_FEATURE_feature_fk">
       <ColNames>featureID</ColNames>
       <RefSchemaName>s25099159</RefSchemaName>
       <RefTableName>feature</RefTableName>
       <RefColNames>featureID</RefColNames>
+      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <column id="283" parent="231" name="typeID">
       <Position>1</Position>
