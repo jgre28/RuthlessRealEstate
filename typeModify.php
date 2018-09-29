@@ -13,7 +13,7 @@
 <script language="javascript">
     function confirmDelete()
     {
-        window.location='typeModify.php?propertyID=<?php echo $_GET["typeID"]; ?>&Action=ConfirmDelete';
+        window.location='typeModify.php?typeID=<?php echo $_GET["typeID"]; ?>&Action=ConfirmDelete';
     }
 </script>
 <?php
@@ -34,11 +34,11 @@ switch($strAction)
     case "UPDATE":
                 ?>
         <div class="container">
-            <form method="post" action="propertyModify.php?propertyID=<?php echo $_GET["propertyID"]; ?>&Action=ConfirmUpdate">
+            <form method="post" action="typeModify.php?typeID=<?php echo $_GET["typeID"]; ?>&Action=ConfirmUpdate">
                 <h1>Property Type Update</h1>
                 <table>
                     <tr>
-                        <td>Type Name</td>
+                        <th>Type Name</th>
                         <td><input type="text" name="newType" size="50" value="<?php echo $row["typeName"]; ?>"></td>
                     </tr>
 

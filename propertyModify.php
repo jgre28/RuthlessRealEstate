@@ -61,37 +61,37 @@ switch($strAction)
     ON f.featureID=pf.featureID ORDER BY f.featureName;");
 
         ?>
-        <div class="container">
-            <form method="post" action="propertyModify.php?propertyID=<?php echo $_GET["propertyID"]; ?>&Action=ConfirmUpdate">
+        <form method="post" action="propertyModify.php?propertyID=<?php echo $_GET["propertyID"]; ?>&Action=ConfirmUpdate">
+            <div class="container">
                 <h1>Property Details Update</h1>
                 <table>
                     <tr>
-                        <td>Unit Number</td>
+                        <th>Unit Number</th>
                         <td><input type="text" name="unitNum" size="50" value="<?php echo $row["unitNum"]; ?>"></td>
                     </tr>
                     <tr>
-                        <td>Street Number</td>
+                        <th>Street Number</th>
                         <td><input type="text" name="streetNum" size="50" value="<?php echo $row["streetNum"]; ?>"></td>
                     </tr>
                     <tr>
-                        <td>Street Name</td>
+                        <th>Street Name</th>
                         <td><input type="text" name="street" size="50" value="<?php echo $row["street"]; ?>"></td>
                     </tr>
                     <tr>
-                        <td>Suburb</td>
+                        <th>Suburb</th>
                         <td><input type="text" name="suburb" size="50" value="<?php echo $row["suburb"]; ?>"></td>
                     </tr>
                     <tr>
-                        <td>State</td>
+                        <th>State</th>
                         <td><input type="text" name="state" size="50" value="<?php echo $row["state"]; ?>"></td>
                     </tr>
 
                     <tr>
-                        <td>Postcode</td>
+                        <th>Postcode</th>
                         <td><input type="text" name="postcode" size="50" value="<?php echo $row["postcode"]; ?>"></td>
                     </tr>
                     <tr>
-                        <td>Type</td>
+                        <th>Type</th>
                         <td><Select Name = "type">
                                 <?php
                                 while ($Type= $propertyTypes->fetch_assoc())
@@ -106,6 +106,9 @@ switch($strAction)
                             </Select></td>
                     </tr>
                 </table>
+            </div>
+            <br>
+            <div class="container">
                 <h3>Features</h3>
                 <table>
                     <tr>
@@ -131,7 +134,9 @@ switch($strAction)
 
 
                 </table>
-
+            </div>
+            <br>
+                <div class="container">
                 <table>
                     <tr>
                         <td><input type = "submit" value="Update Property"></td>
@@ -139,8 +144,9 @@ switch($strAction)
                     </tr>
 
                 </table>
+                </div>
             </form>
-        </div>
+
         <?php
         break;
     case "ConfirmUpdate":

@@ -18,6 +18,7 @@ $result = $conn->query($query);
 
 <div class="container">
     <h2>Property Types</h2>
+    <a href="typeAdd.php?Action=INSERT">Add new type</a>
     <table class="table table-striped table-bordered">
         <tr>
             <th>Type</th>
