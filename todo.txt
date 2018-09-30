@@ -13,7 +13,6 @@ search properties
 send client emails
 --pdf doc for client details
 
-view/add/edit/delete features page
 
 --property multiple edit page
 
