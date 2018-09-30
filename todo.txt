@@ -9,7 +9,7 @@ code pages
 upload images for property
 search properties
 
-view/add/edit/delete client page
+
 send client emails
 --pdf doc for client details
 
