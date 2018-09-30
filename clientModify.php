@@ -148,10 +148,6 @@ switch($strAction)
 
     case "DELETE":
 
-        //get the types name to display rather than the ID of the type
-        $type= $row["propertyType"];
-        $typeName = mysqli_fetch_row($conn->query("SELECT typeName FROM type WHERE $type= typeID"));
-
         //formats the address to be nice
         $address= "";
         if (!empty($row["unitNum"])){
@@ -159,38 +155,26 @@ switch($strAction)
         }
         $address= $address.$row["streetNum"]." ".$row["street"].", ".$row["suburb"].", ".$row["state"].", ".$row["postcode"];
 
-
-        //gets the sellers name
-        $sellerID=  $row["sellerID"];
-        $sellerName= mysqli_fetch_row($conn->query("SELECT gName, fName FROM client WHERE $sellerID= clientID"));
         ?>
         <div class="container">
-            <h1>Confirm deletion of the following property record</h1>
+            <h1>Confirm deletion of the following client record</h1>
 
             <table>
                 <tr>
-                    <th>Listing Date:</th>
-                    <td><?php echo date("d/m/Y",strtotime($row["listingDate"]))?></td>
-                </tr>
-                <tr>
-                    <th>Listing Price:</th>
-                    <td><?php echo "$".$row["listingPrice"]?></td>
-                </tr>
-                <tr>
-                    <th>Property Type:</th>
-                    <td><?php echo $typeName[0]?></td>
+                    <th>Name:</th>
+                    <td><?php echo $row["gName"]." ".$row["fName"]?></td>
                 </tr>
                 <tr>
                     <th>Address:</th>
                     <td><?php echo $address?></td>
                 </tr>
                 <tr>
-                    <th>Seller:</th>
-                    <td><?php echo $sellerName[0]." ".$sellerName[1]?></td>
+                    <th>Email:</th>
+                    <td><?php echo $row["email"]?></td>
                 </tr>
                 <tr>
-                    <th>Description:</th>
-                    <td><?php echo $row["description"]?></td>
+                    <th>Contact:</th>
+                    <td><?php echo $row["mobile"]?></td>
                 </tr>
 
             </table>
@@ -198,7 +182,7 @@ switch($strAction)
             <table align="center">
                 <tr>
                     <td><input type="button" value="Confirm" OnClick="confirmDelete();">
-                    <td><input type="button" value="Cancel" OnClick="window.location='displayProperties.php'"></td>
+                    <td><input type="button" value="Cancel" OnClick="window.location='displayClients.php'"></td>
                 </tr>
             </table>
         </div>
@@ -206,12 +190,12 @@ switch($strAction)
         break;
 
     case "ConfirmDelete":
-        $query="DELETE FROM property WHERE propertyID =".$_GET["propertyID"];
+        $query="DELETE FROM client WHERE clientID =".$_GET["clientID"];
         if($conn->query($query))
         {
             ?>
             <div class="container">
-            <h4>The property record has been successfully deleted</h4>
+            <h4>The client record has been successfully deleted</h4>
 
             <?php
         }
@@ -219,7 +203,7 @@ switch($strAction)
             echo "<center>Error Contacting Database<p /></center>";
         }
         ?>
-        <input type = "button" value="Return to List" OnClick="window.location='displayProperties.php'">
+        <input type = "button" value="Return to List" OnClick="window.location='displayClients.php'">
         </div>
 
         <?php
