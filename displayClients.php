@@ -15,7 +15,7 @@ $query= "SELECT * FROM client ORDER BY fName";
 $result = $conn->query($query);
 ?>
 <div class="container">
-    <h2>Properties Table</h2>
+    <h2>Clients Table</h2>
     <a href="clientAdd.php?Action=INSERT">Add New Client</a>
     <table class="table table-striped table-bordered">
         <tr>

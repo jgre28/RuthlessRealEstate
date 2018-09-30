@@ -295,7 +295,7 @@ switch($strAction)
         break;
     case "ConfirmUpdate":
         {
-            $test=NULL;
+
             $query="UPDATE property set unitNum='$_POST[unitNum]', 
             streetNum='$_POST[streetNum]', street='$_POST[street]', 
             suburb='$_POST[suburb]', state='$_POST[state]', postcode='$_POST[postcode]', 
