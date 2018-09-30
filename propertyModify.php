@@ -74,6 +74,106 @@ $strAction = $_GET["Action"];
 
 switch($strAction)
 {
+    case "VIEW":
+        //get the types name to display rather than the ID of the type
+        $type= $row["propertyType"];
+        $typeName = mysqli_fetch_row($conn->query("SELECT typeName FROM type WHERE $type= typeID"));
+
+        //formats the address to be nice
+        $address= "";
+        if (!empty($row["unitNum"])){
+            $address= $address."U".$row["unitNum"].", ";
+        }
+        $address= $address.$row["streetNum"]." ".$row["street"].", ".$row["suburb"].", ".$row["state"].", ".$row["postcode"];
+
+        //gets the sellers name
+        $sellerID=  $row["sellerID"];
+        $sellerName= mysqli_fetch_row($conn->query("SELECT gName, fName FROM client WHERE $sellerID= clientID"));
+
+        //gets the properties features
+        $proID = $_GET["propertyID"];
+        $propertyFeatures = $conn->query("SELECT f.featureID featID, f.featureName name, pf.propertyID propID, 
+        pf.description FROM  feature f JOIN (SELECT * FROM property_feature WHERE propertyID = $proID) pf
+    ON f.featureID=pf.featureID ORDER BY f.featureName;");
+
+        ?>
+        <div class="container">
+            <h1>Property Details</h1>
+            <table>
+                <tr>
+                    <th>Property Type:</th>
+                    <td><?php echo $typeName[0]?></td>
+                </tr>
+                <tr>
+                    <th>Address:</th>
+                    <td><?php echo $address?></td>
+                </tr>
+                <tr>
+                    <th>Seller:</th>
+                    <td><?php echo $sellerName[0]." ".$sellerName[1]?></td>
+                </tr>
+                <tr>
+                    <th>Listing Date:</th>
+                    <td><?php echo date("d/m/Y",strtotime($row["listingDate"]))?></td>
+                </tr>
+                <tr>
+                    <th>Listing Price:</th>
+                    <td><?php echo "$".$row["listingPrice"]?></td>
+                </tr>
+                <tr>
+                    <th>Sale Date:</th>
+                    <td><?php echo date("d/m/Y",strtotime($row["saleDate"]))?></td>
+                </tr>
+                <tr>
+                    <th>Sale Price:</th>
+                    <td><?php echo "$".$row["salePrice"]?></td>
+                </tr>
+                <tr>
+                    <th>Image:</th>
+                    <td><?php echo $row["imageName"]?></td>
+                </tr>
+                <tr>
+                    <th>Description:</th>
+                    <td><?php echo $row["description"]?></td>
+                </tr>
+
+            </table>
+        </div>
+        <br>
+        <div class="container">
+            <h3>Property Features</h3>
+            <table>
+                <tr>
+                    <th>Feature</th>
+                    <th>Description</th>
+
+                </tr>
+                <?php
+                while ($Features= $propertyFeatures->fetch_assoc())
+                { ?>
+                    <tr>
+                        <td><?php echo $Features["name"]?></td>
+                        <td><?php echo $Features["description"]?></td>
+                    </tr>
+
+
+                    <?php
+                }
+                ?>
+
+            </table>
+        </div>
+        <br>
+        <div class="container">
+            <form>
+                <input type = "button" value="Return to List" OnClick="window.location='displayProperties.php'">
+            </form>
+        </div>
+
+    <?php
+        break;
+
+
     case "UPDATE":
         $propertyTypes = $conn->query("SELECT * FROM type ORDER BY typeName");
         $proID = $_GET["propertyID"];

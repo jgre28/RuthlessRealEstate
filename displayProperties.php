@@ -29,6 +29,7 @@ $result = $conn->query($query);
             <th>Description</th>
             <th></th>
             <th></th>
+            <th></th>
 
 
         </tr>
@@ -61,7 +62,7 @@ $result = $conn->query($query);
                 <td><?php echo $row["imageName"]?></td>
                 <td><?php echo $row["description"]?></td>
 
-
+                <td><a href="propertyModify.php?propertyID=<?php echo $row["propertyID"]; ?>&Action=VIEW">View</a></td>
                 <td><a href="propertyModify.php?propertyID=<?php echo $row["propertyID"]; ?>&Action=UPDATE">Update</a></td>
                 <td><a href="propertyModify.php?propertyID=<?php echo $row["propertyID"]; ?>&Action=DELETE">Delete</a></td>
 
