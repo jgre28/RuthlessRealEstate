@@ -991,48 +991,56 @@
       <Position>5</Position>
       <Comment>clients street number</Comment>
       <DataType>int(10)|0s</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="245" parent="227" name="street">
       <Position>6</Position>
       <Comment>clients street name</Comment>
       <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="246" parent="227" name="suburb">
       <Position>7</Position>
       <Comment>the clients suburb</Comment>
       <DataType>varchar(50)|0s</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="247" parent="227" name="state">
       <Position>8</Position>
       <Comment>the clients state</Comment>
       <DataType>varchar(6)|0s</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="248" parent="227" name="postcode">
       <Position>9</Position>
       <Comment>the clients postcode</Comment>
       <DataType>varchar(4)|0s</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="249" parent="227" name="email">
       <Position>10</Position>
       <Comment>the clients email</Comment>
       <DataType>varchar(50)|0s</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="250" parent="227" name="mobile">
       <Position>11</Position>
       <Comment>clients mobile number</Comment>
       <DataType>varchar(12)|0s</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="251" parent="227" name="mailingList">
       <Position>12</Position>
       <Comment>whether the client is on the mailing list or not</Comment>
       <DataType>char(1)|0s</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <key id="252" parent="227" name="PRIMARY">
