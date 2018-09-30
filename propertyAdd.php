@@ -180,7 +180,7 @@ switch($strAction)
                 }
             }
 
-            //header("Location: displayProperties.php");
+            header("Location: displayProperties.php");
         }
         break;
 }?>

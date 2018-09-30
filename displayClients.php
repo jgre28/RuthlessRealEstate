@@ -26,7 +26,6 @@ $result = $conn->query($query);
             <th>Mailing List</th>
             <th></th>
             <th></th>
-            <th></th>
 
 
         </tr>
@@ -50,7 +49,7 @@ $result = $conn->query($query);
                 <td><?php echo $row["mobile"]?></td>
                 <td><?php echo $row["mailingList"]?></td>
 
-                <td><a href="clientModify.php?clientID=<?php echo $row["clientID"]; ?>&Action=VIEW">View</a></td>
+
                 <td><a href="clientModify.php?clientID=<?php echo $row["clientID"]; ?>&Action=UPDATE">Update</a></td>
                 <td><a href="clientModify.php?clientID=<?php echo $row["clientID"]; ?>&Action=DELETE">Delete</a></td>
 
