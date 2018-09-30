@@ -20,6 +20,26 @@ function fSelect($value1, $value2)
     return $strSelect;
 }
 
+function saleDateCheck($var)
+{
+    $str="";
+    if(!empty($var))
+    {
+        $str = "saleDate='$var', ";
+    }
+    return $str;
+}
+
+function salePriceCheck($var)
+{
+    $str="";
+    if(!empty($var))
+    {
+        $str = "salePrice='$var', ";
+    }
+    return $str;
+}
+
 function isChecked($var)
 {
     $checked = "";
@@ -66,6 +86,21 @@ switch($strAction)
                 <h1>Property Details Update</h1>
                 <table>
                     <tr>
+                        <th>Type</th>
+                        <td><Select Name = "type">
+                                <?php
+                                while ($Type= $propertyTypes->fetch_assoc())
+                                {
+                                    ?>
+                                    <option value="<?php echo $Type["typeID"]; ?>"<?php echo fSelect($row["propertyType"],$Type["typeID"]); ?>>
+                                        <?php echo $Type["typeName"]; ?>
+                                    </option>
+                                    <?php
+                                }
+                                ?>
+                            </Select></td>
+                    </tr>
+                    <tr>
                         <th>Unit Number</th>
                         <td><input type="text" name="unitNum" size="50" value="<?php echo $row["unitNum"]; ?>"></td>
                     </tr>
@@ -91,19 +126,28 @@ switch($strAction)
                         <td><input type="text" name="postcode" size="50" value="<?php echo $row["postcode"]; ?>"></td>
                     </tr>
                     <tr>
-                        <th>Type</th>
-                        <td><Select Name = "type">
-                                <?php
-                                while ($Type= $propertyTypes->fetch_assoc())
-                                {
-                                    ?>
-                                    <option value="<?php echo $Type["typeID"]; ?>"<?php echo fSelect($row["propertyType"],$Type["typeID"]); ?>>
-                                        <?php echo $Type["typeName"]; ?>
-                                    </option>
-                                    <?php
-                                }
-                                ?>
-                            </Select></td>
+                        <th>Listing Date</th>
+                        <td><input type="date" name="listingDate" value="<?php echo $row["listingDate"]; ?>"></td>
+                    </tr>
+                    <tr>
+                        <th>Listing Price</th>
+                        <td><input type="text" name="listingPrice" size="50" value="<?php echo $row["listingPrice"]; ?>"></td>
+                    </tr>
+                    <tr>
+                        <th>Sale Date</th>
+                        <td><input type="date" name="saleDate" value="<?php echo $row["saleDate"]; ?>"></td>
+                    </tr>
+                    <tr>
+                        <th>Sale Price</th>
+                        <td><input type="text" name="salePrice" size="50" value="<?php echo $row["salePrice"]; ?>"></td>
+                    </tr>
+                    <tr>
+                        <th>Image Name</th>
+                        <td><input type="text" name="imageName" size="50" value="<?php echo $row["imageName"]; ?>"></td>
+                    </tr>
+                    <tr>
+                        <th>Description</th>
+                        <td><input type="text" name="propDesc" size="50" value="<?php echo $row["description"]; ?>"></td>
                     </tr>
                 </table>
             </div>
@@ -151,10 +195,12 @@ switch($strAction)
         break;
     case "ConfirmUpdate":
         {
+            $test=NULL;
             $query="UPDATE property set unitNum='$_POST[unitNum]', 
             streetNum='$_POST[streetNum]', street='$_POST[street]', 
             suburb='$_POST[suburb]', state='$_POST[state]', postcode='$_POST[postcode]', 
-            propertyType='$_POST[type]'
+            propertyType='$_POST[type]', listingDate='$_POST[listingDate]', listingPrice='$_POST[listingPrice]',
+            ".saleDateCheck($_POST['saleDate']).salePriceCheck($_POST['salePrice'])." imageName='$_POST[imageName]', description='$_POST[propDesc]'
             WHERE propertyID =".$_GET["propertyID"];
             $result = $conn->query(($query));
             $query="DELETE FROM property_feature WHERE propertyID =".$_GET["propertyID"];
@@ -179,14 +225,11 @@ switch($strAction)
 
 
                 foreach ($_POST["check"] as $featID) {
-                    //echo $_POST["description"];
-                    //find description indexes to include
-                    //echo $featID."\n";
 
                     $index = array_search($featID, $IDs);
-                    echo $index."\n";
 
-                    echo $query = "INSERT INTO property_feature (propertyID, featureID, description)
+
+                    $query = "INSERT INTO property_feature (propertyID, featureID, description)
                               VALUES (" . $_GET["propertyID"] . ", " . $featID . ", '$descriptions[$index]')";
                     $result = $conn->query(($query));
 

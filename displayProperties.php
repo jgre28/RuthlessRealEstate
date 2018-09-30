@@ -17,6 +17,7 @@ $result = $conn->query($query);
 ?>
 <div class="container">
     <h2>Properties Table</h2>
+    <a href="propertyAdd.php?Action=INSERT">Add New Property</a>
     <table class="table table-striped table-bordered">
         <tr>
             <th>Listing Date</th>

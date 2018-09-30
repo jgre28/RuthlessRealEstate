@@ -1,0 +1,20 @@
+FIT2104 to do
+
+make main page
+data entry validation on all pages
+login security
+code pages
+
+view/add property pages
+upload images for property
+search properties
+
+view/add/edit/delete client page
+send client emails
+--pdf doc for client details
+
+view/add/edit/delete features page
+
+--property multiple edit page
+
+--images page

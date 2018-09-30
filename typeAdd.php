@@ -25,7 +25,7 @@ switch($strAction)
 
         <form method="post" action="typeAdd.php?Action=ConfirmInsert">
             <div class="container">
-            <h1>Property Details</h1>
+            <h1>New Property Type</h1>
             <table>
                 <tr>
                     <th>Type Name:</th>
