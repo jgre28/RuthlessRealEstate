@@ -148,7 +148,7 @@ $conn = new mysqli($HOST, $UName, $PWord, $DB);
 
             <tr>
                 <td><?php echo date("d/m/Y",strtotime($row["listingDate"]))?></td>
-                <td><?php echo "$".$row["listingPrice"]?></td>
+                <td><?php echo "$".number_format($row["listingPrice"],2)?></td>
                 <td><?php echo $typeName[0]?></td>
                 <td><?php echo $address?></td>
                 <td><?php echo $sellerName[0]." ".$sellerName[1]?></td>
