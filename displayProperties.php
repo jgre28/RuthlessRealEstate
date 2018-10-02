@@ -12,11 +12,69 @@
 
 include("connection.php");
 $conn = new mysqli($HOST, $UName, $PWord, $DB);
-$query= "SELECT * FROM property ORDER BY listingDate";
-$result = $conn->query($query);
+
 ?>
 <div class="container">
     <h2>Properties Table</h2>
+    <form method="post" action="displayProperties.php">
+    <table>
+        <tr>
+
+            <td><input type="text" name="search" size="45" value="<?php if (isset($_POST["search"])) echo $_POST["search"]; ?>"></td>
+            <td><input type="submit" value="Search"></td>
+            <td><input type="button" value="Reset Search" OnClick="window.location='displayProperties.php'"></td>
+        </tr>
+    </table>
+        <table>
+        <tr>
+            <th>Search By:</th>
+            <td><input type="radio" name="searchCriteria" value="propertyType"
+                    <?php if (!isset($_POST["searchCriteria"]) || $_POST["searchCriteria"]=="propertyType") echo "checked";?>>Property Type</td>
+            <td><input type="radio" name="searchCriteria" value="suburb"
+                    <?php if (isset($_POST["searchCriteria"]) && $_POST["searchCriteria"]=="suburb") echo "checked";?>>Suburb</td>
+
+
+        </tr>
+    </table>
+
+    </form>
+
+    <?php
+    if (empty($_POST["search"]))
+    {
+        $query= "SELECT * FROM property ORDER BY listingDate";
+        $result = $conn->query($query);
+    }
+    else
+    {
+        $query= "SELECT * FROM property WHERE propertyType = 1 ORDER BY listingDate ";
+        $result = $conn->query($query);
+
+        if($_POST["searchCriteria"]=="propertyType")
+        {
+            ?>
+            <p>You Searched by propertyType</p>
+            <?php
+        }
+        else
+        {
+            $subSearch=ucwords(strtolower($_POST["search"]));
+            $query= "SELECT * FROM property WHERE  suburb = '$subSearch' ORDER BY listingDate ";
+            $result = $conn->query($query);
+
+            ?>
+            <p>You Searched in the suburb <?php echo $subSearch?></p>
+            <?php
+        }
+        ?>
+
+
+
+    <?php
+    }
+
+
+        ?>
     <a href="propertyAdd.php?Action=INSERT">Add New Property</a>
     <table class="table table-striped table-bordered">
         <tr>
