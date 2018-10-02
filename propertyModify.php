@@ -40,6 +40,30 @@ function salePriceCheck($var)
     return $str;
 }
 
+function soldDateCheck($var)
+{
+    $str="Not Sold";
+    if(!empty($var))
+    {
+        $str=date("d/m/Y",strtotime($var));
+
+    }
+    return $str;
+
+}
+
+function soldPriceCheck($var)
+{
+    $str="Not Sold";
+    if(!empty($var))
+    {
+        $str="$".$var;
+
+    }
+    return $str;
+
+}
+
 function isChecked($var)
 {
     $checked = "";
@@ -122,11 +146,11 @@ switch($strAction)
                 </tr>
                 <tr>
                     <th>Sale Date:</th>
-                    <td><?php echo date("d/m/Y",strtotime($row["saleDate"]))?></td>
+                    <td><?php echo soldDateCheck($row["saleDate"])?></td>
                 </tr>
                 <tr>
                     <th>Sale Price:</th>
-                    <td><?php echo "$".$row["salePrice"]?></td>
+                    <td><?php echo soldPriceCheck($row["salePrice"])?></td>
                 </tr>
                 <tr>
                     <th>Image:</th>
@@ -306,7 +330,16 @@ switch($strAction)
             $query="DELETE FROM property_feature WHERE propertyID =".$_GET["propertyID"];
             $result = $conn->query(($query));
 
-
+            if (empty($_POST["saleDate"]))
+            {
+                $query="UPDATE property set saleDate = NULL WHERE propertyID =".$_GET["propertyID"];
+                $result = $conn->query(($query));
+            }
+            if (empty($_POST["salePrice"]))
+            {
+                $query="UPDATE property set salePrice = NULL WHERE propertyID =".$_GET["propertyID"];
+                $result = $conn->query(($query));
+            }
 
             if (isset($_POST["check"]))
             {
