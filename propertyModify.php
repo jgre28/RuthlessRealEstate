@@ -57,7 +57,7 @@ function soldPriceCheck($var)
     $str="Not Sold";
     if(!empty($var))
     {
-        $str="$".$var;
+        $str="$".number_format($var,2);
 
     }
     return $str;
@@ -142,7 +142,7 @@ switch($strAction)
                 </tr>
                 <tr>
                     <th>Listing Price:</th>
-                    <td><?php echo "$".$row["listingPrice"]?></td>
+                    <td><?php echo "$".number_format($row["listingPrice"],2)?></td>
                 </tr>
                 <tr>
                     <th>Sale Date:</th>
