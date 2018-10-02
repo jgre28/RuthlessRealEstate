@@ -10,7 +10,7 @@ upload images for property
 search properties
 
 
-send client emails
+
 --pdf doc for client details
 
 
