@@ -25,7 +25,7 @@ switch($strAction)
         ?>
 
 
-        <form method="post" action="propertyAdd.php?Action=ConfirmInsert">
+        <form method="post" enctype="multipart/form-data" action="propertyAdd.php?Action=ConfirmInsert">
             <div class="container">
                 <h1>New Property Details</h1>
                 <table>
@@ -94,7 +94,7 @@ switch($strAction)
                     </tr>
                     <tr>
                         <th>Image Name</th>
-                        <td><input type="text" name="imageName" size="50"></td>
+                        <td><input type="file" name="imageName" size="50"></td>
                     </tr>
                     <tr>
                         <th>Description</th>
@@ -146,12 +146,22 @@ switch($strAction)
         break;
     case "ConfirmInsert":
         {
-            $query="INSERT INTO property(propertyID, unitNum, streetNum, street, suburb, state, postcode,
+
+            $upFile = "property_images/".$_FILES["imageName"]["name"];
+
+            if(!move_uploaded_file($_FILES["imageName"] ["tmp_name"], $upFile))
+            {
+                echo "ERROR: Could not move image into directory";
+            }
+            else {
+
+
+                $query = "INSERT INTO property(propertyID, unitNum, streetNum, street, suburb, state, postcode,
             sellerID, listingDate, listingPrice, propertyType, imageName, description) values (propertyID, '$_POST[unitNum]', 
             '$_POST[streetNum]', '$_POST[street]', '$_POST[suburb]', '$_POST[state]', '$_POST[postcode]', '$_POST[name]',
-            '$_POST[listDate]', '$_POST[listPrice]', '$_POST[type]', '$_POST[imageName]', '$_POST[propDesc]')";
-            $result = $conn->query(($query));
-
+            '$_POST[listDate]', '$_POST[listPrice]', '$_POST[type]', '$_FILES[imageName][name]', '$_POST[propDesc]')";
+                $result = $conn->query(($query));
+            }
 
             if (isset($_POST["check"]))
             {
