@@ -47,14 +47,35 @@ $conn = new mysqli($HOST, $UName, $PWord, $DB);
     }
     else
     {
-        $query= "SELECT * FROM property WHERE propertyType = 1 ORDER BY listingDate ";
-        $result = $conn->query($query);
+
 
         if($_POST["searchCriteria"]=="propertyType")
         {
-            ?>
-            <p>You Searched by propertyType</p>
-            <?php
+            $typeSearchTerm=ucwords(strtolower($_POST["search"]));
+
+            $query= "SELECT typeID FROM type WHERE typeName='$typeSearchTerm'";
+            $typeResult=$conn->query($query);
+
+            if($typeResult->fetch_array())
+            {
+                $typeSearch = mysqli_fetch_array($conn->query($query));
+
+
+                $query= "SELECT * FROM property WHERE propertyType=$typeSearch[0] ORDER BY listingDate ";
+                $result = $conn->query($query);
+                ?>
+                <p>You Searched for the property type <?php echo $typeSearchTerm?></p>
+                <?php
+            }
+            else{
+                ?>
+                <p>Property type <?php echo $typeSearchTerm?> does not exist</p>
+
+                <?php
+                $query= "SELECT * FROM property ORDER BY listingDate";
+                $result = $conn->query($query);
+
+            }
         }
         else
         {
@@ -62,9 +83,23 @@ $conn = new mysqli($HOST, $UName, $PWord, $DB);
             $query= "SELECT * FROM property WHERE  suburb = '$subSearch' ORDER BY listingDate ";
             $result = $conn->query($query);
 
-            ?>
-            <p>You Searched in the suburb <?php echo $subSearch?></p>
-            <?php
+            if($result->fetch_array()) {
+                ?>
+                <p>You Searched in the suburb <?php echo $subSearch ?></p>
+                <?php
+                $query= "SELECT * FROM property WHERE  suburb = '$subSearch' ORDER BY listingDate ";
+                $result = $conn->query($query);
+            }
+            else{
+                ?>
+                <p>No Properties available in the suburb <?php echo $subSearch?></p>
+
+                <?php
+                $query= "SELECT * FROM property ORDER BY listingDate";
+                $result = $conn->query($query);
+
+            }
+
         }
         ?>
 
