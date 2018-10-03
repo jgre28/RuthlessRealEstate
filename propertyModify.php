@@ -551,7 +551,9 @@ case "DELETE":
     break;
 
 case "ConfirmDelete":
-$query="DELETE FROM property WHERE propertyID =".$_GET["propertyID"];
+
+    unlink("property_images/".$row["imageName"]);
+    $query="DELETE FROM property WHERE propertyID =".$_GET["propertyID"];
 if($conn->query($query))
 {
 ?>
