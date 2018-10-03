@@ -203,15 +203,38 @@ switch($strAction)
         $proID = $_GET["propertyID"];
         $propertyFeatures = $conn->query("SELECT f.featureID featID, f.featureName name, pf.propertyID propID, pf.description FROM  feature f LEFT OUTER JOIN (SELECT * FROM property_feature WHERE propertyID = $proID) pf
     ON f.featureID=pf.featureID ORDER BY f.featureName;");
+        $clientNames = $conn->query("SELECT clientID, gName, fName FROM client ORDER BY fName");
+
 
         ?>
-        <form method="post" action="propertyModify.php?propertyID=<?php echo $_GET["propertyID"]; ?>&Action=ConfirmUpdate">
+        <form method="post" enctype="multipart/form-data" action="propertyModify.php?propertyID=<?php echo $_GET["propertyID"]; ?>&Action=ConfirmUpdate">
             <div class="container">
                 <h1>Property Details Update</h1>
                 <table>
                     <tr>
-                        <th>Type</th>
-                        <td><Select Name = "type">
+                        <th>Seller:</th>
+                        <td><Select Name = "name" required
+                                    onInvalid="verifyEntry(this, 'Seller');"
+                                    onInput="verifyEntry(this, 'Seller');">
+                                <option value=""></option>
+                                <?php
+                                while ($Client= $clientNames->fetch_assoc())
+                                {
+                                    ?>
+                                    <option value="<?php echo $Client["clientID"]; ?>"<?php echo fSelect($row["sellerID"],$Client["clientID"]); ?>>
+                                        <?php echo $Client["gName"]." ".$Client["fName"]; ?>
+                                    </option>
+                                    <?php
+                                }
+                                ?>
+                            </Select></td>
+                    </tr>
+                    <tr>
+                        <th>Property Type:</th>
+                        <td><Select Name = "type" required
+                                    onInvalid="verifyEntry(this, 'Property Type');"
+                                    onInput="verifyEntry(this, 'Property Type');">
+                                <option value=""></option>
                                 <?php
                                 while ($Type= $propertyTypes->fetch_assoc())
                                 {
@@ -225,53 +248,84 @@ switch($strAction)
                             </Select></td>
                     </tr>
                     <tr>
-                        <th>Unit Number</th>
-                        <td><input type="text" name="unitNum" size="50" value="<?php echo $row["unitNum"]; ?>"></td>
+                        <th>Unit Number:</th>
+                        <td><input type="text" name="unitNum" size="10" value="<?php echo $row["unitNum"]; ?>"></td>
                     </tr>
                     <tr>
-                        <th>Street Number</th>
-                        <td><input type="text" name="streetNum" size="50" value="<?php echo $row["streetNum"]; ?>"></td>
+                        <th>Street Number:</th>
+                        <td><input type="text" name="streetNum" size="10" value="<?php echo $row["streetNum"]; ?>" required
+                                   onInvalid="verifyEntry(this, 'Street Number');"
+                                   onInput="verifyEntry(this, 'Street Number');"></td>
                     </tr>
                     <tr>
-                        <th>Street Name</th>
-                        <td><input type="text" name="street" size="50" value="<?php echo $row["street"]; ?>"></td>
+                        <th>Street Name:</th>
+                        <td><input type="text" name="street" size="50" value="<?php echo $row["street"]; ?>" required
+                                   onInvalid="verifyEntry(this, 'Street');"
+                                   onInput="verifyEntry(this, 'Street');"></td>
                     </tr>
                     <tr>
-                        <th>Suburb</th>
-                        <td><input type="text" name="suburb" size="50" value="<?php echo $row["suburb"]; ?>"></td>
+                        <th>Suburb:</th>
+                        <td><input type="text" name="suburb" size="50" value="<?php echo $row["suburb"]; ?>" required
+                                   onInvalid="verifyEntry(this, 'Suburb');"
+                                   onInput="verifyEntry(this, 'Suburb');"></td>
                     </tr>
                     <tr>
-                        <th>State</th>
-                        <td><input type="text" name="state" size="50" value="<?php echo $row["state"]; ?>"></td>
+                        <th>State:</th>
+                        <td>
+                        <Select Name = "state" required
+                                onInvalid="verifyEntry(this, 'State');"
+                                onInput="verifyEntry(this, 'State');">
+                            <option value=""></option>
+                            <option value="ACT" <?php echo fSelect($row["state"],'ACT'); ?>>ACT</option>
+                            <option value="NSW" <?php echo fSelect($row["state"],'NSW'); ?>>NSW</option>
+                            <option value="NT" <?php echo fSelect($row["state"],'NT'); ?>>NT</option>
+                            <option value="QLD" <?php echo fSelect($row["state"],'QLD'); ?>>QLD</option>
+                            <option value="SA" <?php echo fSelect($row["state"],'SA'); ?>>SA</option>
+                            <option value="TAS" <?php echo fSelect($row["state"],'TAS'); ?>>TAS</option>
+                            <option value="VIC" <?php echo fSelect($row["state"],'VIC'); ?>>VIC</option>
+                            <option value="WA" <?php echo fSelect($row["state"],'WA'); ?>>WA</option>
+                        </Select></td>
                     </tr>
 
                     <tr>
-                        <th>Postcode</th>
-                        <td><input type="text" name="postcode" size="50" value="<?php echo $row["postcode"]; ?>"></td>
+                        <th>Postcode:</th>
+                        <td><input type="text" name="postcode" size="15" value="<?php echo $row["postcode"]; ?>" required
+                                   onInvalid="verifyEntry(this, 'Postcode');"
+                                   onInput="verifyEntry(this, 'Postcode');"></td>
                     </tr>
                     <tr>
-                        <th>Listing Date</th>
-                        <td><input type="date" name="listingDate" value="<?php echo $row["listingDate"]; ?>"></td>
+                        <th>Listing Date:</th>
+                        <td><input type="date" name="listingDate" value="<?php echo $row["listingDate"]; ?>" required
+                                   onInvalid="verifyEntry(this, 'Listing Date');"
+                                   onInput="verifyEntry(this, 'Listing Date');"></td>
                     </tr>
                     <tr>
-                        <th>Listing Price</th>
-                        <td><input type="text" name="listingPrice" size="50" value="<?php echo $row["listingPrice"]; ?>"></td>
+                        <th>Listing Price:</th>
+                        <td><input type="text" name="listingPrice" size="20" value="<?php echo $row["listingPrice"]; ?>" required
+                                   onInvalid="verifyEntry(this, 'Listing Price');"
+                                   onInput="verifyEntry(this, 'Listing Price');"></td>
                     </tr>
                     <tr>
-                        <th>Sale Date</th>
+                        <th>Sale Date:</th>
                         <td><input type="date" name="saleDate" value="<?php echo $row["saleDate"]; ?>"></td>
                     </tr>
                     <tr>
-                        <th>Sale Price</th>
-                        <td><input type="text" name="salePrice" size="50" value="<?php echo $row["salePrice"]; ?>"></td>
+                        <th>Sale Price:</th>
+                        <td><input type="text" name="salePrice" size="20" value="<?php echo $row["salePrice"]; ?>"></td>
                     </tr>
                     <tr>
-                        <th>Image Name</th>
-                        <td><input type="text" name="imageName" size="50" value="<?php echo $row["imageName"]; ?>"></td>
+                        <th>Current Image:</th>
+                        <td><?php echo $row["imageName"]; ?> Delete Image?<input type="checkbox" name="deleteImage" value="Y"> </td>
                     </tr>
                     <tr>
-                        <th>Description</th>
-                        <td><input type="text" name="propDesc" size="50" value="<?php echo $row["description"]; ?>"></td>
+                        <th valign="top" >New Image:</th>
+                        <td><input type="file" name="imageName" size="50"> <br>WARNING: Successfully uploading a new image will delete the old one.</td>
+                    </tr>
+                    <tr>
+                        <th valign="top" >Description:</th>
+                        <td valign="top" align="left">
+                            <textarea cols="55" name="propDesc" rows="5" ><?php echo $row["description"]; ?></textarea>
+                        </td>
                     </tr>
                 </table>
             </div>
@@ -319,12 +373,47 @@ switch($strAction)
         break;
     case "ConfirmUpdate":
         {
+            $imgName=$row["imageName"];
+
+
+            if (isset($_POST["deleteImage"]))
+            {
+                unlink("property_images/".$row["imageName"]);
+                $imgName="";
+            }
+
+            if($_FILES["imageName"]["type"] == "image/png" ||
+                $_FILES["imageName"]["type"] == "image/jpeg" ||
+                $_FILES["imageName"]["type"] == "image/bmp" )
+            {
+                $upFile = "property_images/".$_FILES["imageName"]["name"];
+
+                if (!empty($_FILES["imageName"]["name"]))
+                {
+                    if(!move_uploaded_file($_FILES["imageName"] ["tmp_name"], $upFile))
+                    {
+                        echo "ERROR: Could not move image into directory";
+                        $imgName="";
+                    }
+                    else {
+
+                        $imgName=$_FILES["imageName"]["name"];
+                        unlink("property_images/".$row["imageName"]);
+                        $imgName="";
+
+                    }
+                }
+            }
+
+            $newStreet=ucwords(strtolower($_POST["street"]));
+            $newSuburb=ucwords(strtolower($_POST["suburb"]));
+
 
             $query="UPDATE property set unitNum='$_POST[unitNum]', 
-            streetNum='$_POST[streetNum]', street='$_POST[street]', 
-            suburb='$_POST[suburb]', state='$_POST[state]', postcode='$_POST[postcode]', 
+            streetNum='$_POST[streetNum]', street='$newStreet', 
+            suburb='$newSuburb', state='$_POST[state]', postcode='$_POST[postcode]', sellerID='$_POST[name]',
             propertyType='$_POST[type]', listingDate='$_POST[listingDate]', listingPrice='$_POST[listingPrice]',
-            ".saleDateCheck($_POST['saleDate']).salePriceCheck($_POST['salePrice'])." imageName='$_POST[imageName]', description='$_POST[propDesc]'
+            ".saleDateCheck($_POST['saleDate']).salePriceCheck($_POST['salePrice'])." imageName='$imgName', description='$_POST[propDesc]'
             WHERE propertyID =".$_GET["propertyID"];
             $result = $conn->query(($query));
             $query="DELETE FROM property_feature WHERE propertyID =".$_GET["propertyID"];
@@ -368,7 +457,37 @@ switch($strAction)
 
                 }
             }
-            header("Location: displayProperties.php");
+            if(empty($_FILES["imageName"]["name"]) ||
+                $_FILES["imageName"]["type"] == "image/png" ||
+                $_FILES["imageName"]["type"] == "image/jpeg" ||
+                $_FILES["imageName"]["type"] == "image/bmp" )
+            {
+                ?>
+
+                <div class="container">
+                    <h4>The property record has been successfully Updated</h4>
+
+                    <input type = "button" value="Return to List" OnClick="window.location='displayProperties.php'">
+                </div>
+
+                <?php
+            }
+            else
+            {
+
+                $updateID = $_GET["propertyID"];
+                ?>
+                <div class="container">
+                    <p>The only accepted image types are png, jpeg and bmp.</p>
+                    <p>You can upload a new compatible image or add property without the image.</p>
+
+                    <input type = "button" value="Update Without Image" OnClick="window.location='displayProperties.php'">
+                    <input type = "button" value="Upload New Image" OnClick="window.location='propertyModify.php?propertyID=<?php echo $updateID; ?>&Action=UPDATE'">
+                </div>
+                <?php
+            }
+
+            // header("Location: displayProperties.php");
         }
         break;
 

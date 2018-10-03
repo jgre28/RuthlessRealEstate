@@ -143,11 +143,11 @@ switch($strAction)
                                    onInput="verifyEntry(this, 'Listing Price');"></td>
                     </tr>
                     <tr>
-                        <th>Image Name:</th>
+                        <th>Image:</th>
                         <td><input type="file" name="imageName" size="50"></td>
                     </tr>
                     <tr>
-                        <th valign="top" >Description</th>
+                        <th valign="top" >Description:</th>
 
                         <td valign="top" align="left">
                             <textarea cols="55" name="propDesc" rows="5"></textarea>
@@ -227,14 +227,14 @@ switch($strAction)
 
 
             $newStreet=ucwords(strtolower($_POST["street"]));
-            $newStreet=ucwords(strtolower($_POST["street"]));
+            $newSuburb=ucwords(strtolower($_POST["suburb"]));
 
 
 
 
             $query = "INSERT INTO property(propertyID, unitNum, streetNum, street, suburb, state, postcode,
             sellerID, listingDate, listingPrice, propertyType, imageName, description) values (propertyID, '$_POST[unitNum]', 
-            '$_POST[streetNum]', '$newStreet', '$_POST[suburb]', '$_POST[state]', '$_POST[postcode]', '$_POST[name]',
+            '$_POST[streetNum]', '$newStreet', '$newSuburb', '$_POST[state]', '$_POST[postcode]', '$_POST[name]',
             '$_POST[listDate]', '$_POST[listPrice]', '$_POST[type]', '$imgName', '$_POST[propDesc]')";
             $result = $conn->query(($query));
 
@@ -267,7 +267,10 @@ switch($strAction)
             //print property successfully added if worked
             //if bad image direct to property modify
 
-            if($_FILES["imageName"]["type"] == "image/png" ||
+
+
+            if(empty($_FILES["imageName"]["name"]) ||
+                $_FILES["imageName"]["type"] == "image/png" ||
                 $_FILES["imageName"]["type"] == "image/jpeg" ||
                 $_FILES["imageName"]["type"] == "image/bmp" )
             {
