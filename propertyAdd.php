@@ -9,6 +9,24 @@
  * Time: 10:01 AM
  */
 
+?>
+
+<script language="JavaScript">
+    function verifyEntry(textbox, name)
+    {
+        if(textbox.value=='')
+        {
+            textbox.setCustomValidity('Please enter a value for the '+name+' field');
+        }
+        else
+        {
+            textbox.setCustomValidity('');
+        }
+        return true;
+    }
+</script>
+
+<?php
 include("connection.php");
 $conn = new mysqli($HOST, $UName, $PWord, $DB)
 or die("Couldn't log on to database");
@@ -30,8 +48,11 @@ switch($strAction)
                 <h1>New Property Details</h1>
                 <table>
                     <tr>
-                        <th>Seller</th>
-                        <td><Select Name = "name">
+                        <th>Seller:</th>
+                        <td><Select Name = "name" required
+                                    onInvalid="verifyEntry(this, 'Seller');"
+                                    onInput="verifyEntry(this, 'Seller');">
+                                <option value=""></option>
                                 <?php
                                 while ($Client= $clientNames->fetch_assoc())
                                 {
@@ -45,8 +66,12 @@ switch($strAction)
                             </Select></td>
                     </tr>
                     <tr>
-                        <th>Type</th>
-                        <td><Select Name = "type">
+                        <th>Property Type:</th>
+                        <td><Select Name = "type" required
+                                    onInvalid="verifyEntry(this, 'Property Type');"
+                                    onInput="verifyEntry(this, 'Property Type');">
+                                <option value=""></option>
+
                                 <?php
                                 while ($Type= $propertyTypes->fetch_assoc())
                                 {
@@ -60,45 +85,73 @@ switch($strAction)
                             </Select></td>
                     </tr>
                     <tr>
-                        <th>Unit Number</th>
-                        <td><input type="text" name="unitNum" size="50"></td>
+                        <th>Unit Number:</th>
+                        <td><input type="text" name="unitNum" size="10"></td>
                     </tr>
                     <tr>
-                        <th>Street Number</th>
-                        <td><input type="text" name="streetNum" size="50"></td>
+                        <th>Street Number:</th>
+                        <td><input type="text" name="streetNum" size="10" required
+                            onInvalid="verifyEntry(this, 'Street Number');"
+                            onInput="verifyEntry(this, 'Street Number');"></td>
                     </tr>
                     <tr>
-                        <th>Street Name</th>
-                        <td><input type="text" name="street" size="50"></td>
+                        <th>Street Name:</th>
+                        <td><input type="text" name="street" size="50" required
+                                   onInvalid="verifyEntry(this, 'Street');"
+                                   onInput="verifyEntry(this, 'Street');"></td>
                     </tr>
                     <tr>
-                        <th>Suburb</th>
-                        <td><input type="text" name="suburb" size="50"></td>
+                        <th>Suburb:</th>
+                        <td><input type="text" name="suburb" size="50" required
+                                   onInvalid="verifyEntry(this, 'Suburb');"
+                                   onInput="verifyEntry(this, 'Suburb');"></td>
                     </tr>
                     <tr>
-                        <th>State</th>
-                        <td><input type="text" name="state" size="50""></td>
+                        <th>State:</th>
+
+                        <td><Select Name = "state" required
+                                    onInvalid="verifyEntry(this, 'State');"
+                                    onInput="verifyEntry(this, 'State');">
+                                <option value=""></option>
+                                <option value="ACT">ACT</option>
+                                <option value="NSW">NSW</option>
+                                <option value="NT">NT</option>
+                                <option value="QLD">QLD</option>
+                                <option value="SA">SA</option>
+                                <option value="TAS">TAS</option>
+                                <option value="VIC">VIC</option>
+                                <option value="WA">WA</option>
+                                </Select></td>
                     </tr>
 
                     <tr>
-                        <th>Postcode</th>
-                        <td><input type="text" name="postcode" size="50"></td>
+                        <th>Postcode:</th>
+                        <td><input type="text" name="postcode" size="15" required
+                                   onInvalid="verifyEntry(this, 'Postcode');"
+                                   onInput="verifyEntry(this, 'Postcode');"></td>
                     </tr>
                     <tr>
-                        <th>Listing Date</th>
-                        <td><input type="date" name="listDate" ></td>
+                        <th>Listing Date:</th>
+                        <td><input type="date" name="listDate" required
+                                   onInvalid="verifyEntry(this, 'Listing Date');"
+                                   onInput="verifyEntry(this, 'Listing Date');"></td>
                     </tr>
                     <tr>
-                        <th>Listing Price</th>
-                        <td><input type="text" name="listPrice" size="50"></td>
+                        <th>Listing Price:</th>
+                        <td><input type="text" name="listPrice" size="20" required
+                                   onInvalid="verifyEntry(this, 'Listing Price');"
+                                   onInput="verifyEntry(this, 'Listing Price');"></td>
                     </tr>
                     <tr>
-                        <th>Image Name</th>
+                        <th>Image Name:</th>
                         <td><input type="file" name="imageName" size="50"></td>
                     </tr>
                     <tr>
-                        <th>Description</th>
-                        <td><input type="text" name="propDesc" size="50" height="50"></td>
+                        <th valign="top" >Description</th>
+
+                        <td valign="top" align="left">
+                            <textarea cols="55" name="propDesc" rows="5"></textarea>
+                        </td>
                     </tr>
                 </table>
             </div>
@@ -147,21 +200,43 @@ switch($strAction)
     case "ConfirmInsert":
         {
 
-            $upFile = "property_images/".$_FILES["imageName"]["name"];
+        $imgName="";
 
-            if(!move_uploaded_file($_FILES["imageName"] ["tmp_name"], $upFile))
+            if($_FILES["imageName"]["type"] == "image/png" ||
+                $_FILES["imageName"]["type"] == "image/jpeg" ||
+                $_FILES["imageName"]["type"] == "image/bmp" )
             {
-                echo "ERROR: Could not move image into directory";
+                $upFile = "property_images/".$_FILES["imageName"]["name"];
+
+                if (!empty($_FILES["imageName"]["name"]))
+                {
+                    if(!move_uploaded_file($_FILES["imageName"] ["tmp_name"], $upFile))
+                    {
+                        echo "ERROR: Could not move image into directory";
+                        $imgName="";
+                    }
+                    else {
+
+                        $imgName=$_FILES["imageName"]["name"];
+
+                    }
+                }
             }
-            else {
 
 
-                $query = "INSERT INTO property(propertyID, unitNum, streetNum, street, suburb, state, postcode,
+
+
+            $newStreet=ucwords(strtolower($_POST["street"]));
+            $newStreet=ucwords(strtolower($_POST["street"]));
+
+
+
+
+            $query = "INSERT INTO property(propertyID, unitNum, streetNum, street, suburb, state, postcode,
             sellerID, listingDate, listingPrice, propertyType, imageName, description) values (propertyID, '$_POST[unitNum]', 
-            '$_POST[streetNum]', '$_POST[street]', '$_POST[suburb]', '$_POST[state]', '$_POST[postcode]', '$_POST[name]',
-            '$_POST[listDate]', '$_POST[listPrice]', '$_POST[type]', '$_FILES[imageName][name]', '$_POST[propDesc]')";
-                $result = $conn->query(($query));
-            }
+            '$_POST[streetNum]', '$newStreet', '$_POST[suburb]', '$_POST[state]', '$_POST[postcode]', '$_POST[name]',
+            '$_POST[listDate]', '$_POST[listPrice]', '$_POST[type]', '$imgName', '$_POST[propDesc]')";
+            $result = $conn->query(($query));
 
             if (isset($_POST["check"]))
             {
@@ -189,8 +264,40 @@ switch($strAction)
 
                 }
             }
+            //print property successfully added if worked
+            //if bad image direct to property modify
 
-            header("Location: displayProperties.php");
+            if($_FILES["imageName"]["type"] == "image/png" ||
+                $_FILES["imageName"]["type"] == "image/jpeg" ||
+                $_FILES["imageName"]["type"] == "image/bmp" )
+            {
+            ?>
+
+            <div class="container">
+                <h4>The property record has been successfully added</h4>
+
+            <input type = "button" value="Return to List" OnClick="window.location='displayProperties.php'">
+            </div>
+
+            <?php
+            }
+            else
+                {
+                $query = "SELECT LAST_INSERT_ID();";
+                $result = $conn->query(($query));
+                $insertID = mysqli_fetch_array($result);
+                    ?>
+<div class="container">
+                    <p>The only accepted image types are png, jpeg and bmp.</p>
+                    <p>You can upload a new compatible image or add property without the image.</p>
+
+                    <input type = "button" value="Add Without Image" OnClick="window.location='displayProperties.php'">
+                    <input type = "button" value="Upload New Image" OnClick="window.location='propertyModify.php?propertyID=<?php echo $insertID[0]; ?>&Action=UPDATE'">
+</div>
+    <?php
+            }
+
+           // header("Location: displayProperties.php");
         }
         break;
 }?>
