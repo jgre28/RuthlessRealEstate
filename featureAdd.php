@@ -46,16 +46,16 @@ switch($strAction)
 
         <form method="post" action="featureAdd.php?Action=ConfirmInsert">
             <div class="container">
-                <h1>New Feature Type</h1>
+                <h2>New Feature Type</h2>
                 <table>
                     <tr>
                         <th>Feature:</th>
                         <td><input type="text" name="newFeature" size="50"></td>
                     </tr>
                 </table>
-            </div>
+
             <br>
-            <div class="container">
+
                 <table>
                     <tr>
                         <td><input type = "submit" value="Add Feature"></td>

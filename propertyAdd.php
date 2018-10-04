@@ -66,7 +66,7 @@ switch($strAction)
 
         <form method="post" enctype="multipart/form-data" action="propertyAdd.php?Action=ConfirmInsert">
             <div class="container">
-                <h1>New Property Details</h1>
+                <h2>New Property Details</h2>
                 <table>
                     <tr>
                         <th>Seller:</th>
@@ -175,9 +175,9 @@ switch($strAction)
                         </td>
                     </tr>
                 </table>
-            </div>
+
             <br>
-            <div class="container">
+
                 <h3>Features</h3>
                 <table>
                     <tr>
@@ -191,7 +191,7 @@ switch($strAction)
                         <tr>
                             <td><?php echo $Features["featureName"]?></td>
                             <td><input type="text" name="description[]" size="50"></td>
-                            <td align="center"><input type="checkbox" name="check[]" value="<?php echo $Features["featureID"]; ?>" ></td>
+                            <td align="center"><input type="checkbox" class="checkbox" name="check[]" value="<?php echo $Features["featureID"]; ?>" ></td>
                         </tr>
 
 
@@ -203,9 +203,9 @@ switch($strAction)
 
 
                 </table>
-            </div>
+
             <br>
-            <div class="container">
+
                 <table>
                     <tr>
                         <td><input type = "submit" value="Add Property"></td>

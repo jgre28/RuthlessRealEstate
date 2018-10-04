@@ -80,7 +80,7 @@ switch($strAction)
         ?>
         <form method="post" action="clientModify.php?clientID=<?php echo $_GET["clientID"]; ?>&Action=ConfirmUpdate">
             <div class="container">
-                <h1>Client Details Update</h1>
+                <h2>Client Details Update</h2>
                 <table>
                     <tr>
                         <th>Given Name:</th>
@@ -125,15 +125,15 @@ switch($strAction)
                     </tr>
                     <tr>
                         <th>Mailing List:</th>
-                        <td><input type="checkbox" name="check" value="Y" <?php echo isChecked($row["mailingList"])?>></td>
+                        <td><input type="checkbox" class="checkbox" name="check" value="Y" <?php echo isChecked($row["mailingList"])?>></td>
                     </tr>
 
 
                 </table>
-            </div>
+
             <br>
 
-            <div class="container">
+
                 <table>
                     <tr>
                         <td><input type = "submit" value="Update Client"></td>
@@ -178,7 +178,7 @@ switch($strAction)
 
         ?>
         <div class="container">
-            <h1>Confirm deletion of the following client record</h1>
+            <h2>Confirm deletion of the following client record</h2>
 
             <table>
                 <tr>

@@ -46,7 +46,7 @@ switch($strAction)
 
         <form method="post" action="clientAdd.php?Action=ConfirmInsert">
             <div class="container">
-                <h1>New Client Details</h1>
+                <h2>New Client Details</h2>
                 <table>
                     <tr>
                         <th>Given Name:</th>
@@ -91,14 +91,14 @@ switch($strAction)
                     </tr>
                     <tr>
                         <th>Mailing List:</th>
-                        <td><input type="checkbox" name="check" value="Y" ></td>
+                        <td><input type="checkbox" class="checkbox" name="check" value="Y" ></td>
                     </tr>
 
                 </table>
-            </div>
+
             <br>
 
-            <div class="container">
+
                 <table>
                     <tr>
                         <td><input type = "submit" value="Add Client"></td>

@@ -114,7 +114,7 @@ $conn = new mysqli($HOST, $UName, $PWord, $DB);
                     <td><?php echo $type?></td>
                     <td><?php echo $address?></td>
                     <td><?php echo $name?></td>
-                    <td align="center"><input type="checkbox" name="check[]" value=<?php echo $file?>></td>
+                    <td align="center"><input type="checkbox" class="checkbox" name="check[]" value=<?php echo $file?>></td>
 
                 </tr>
 

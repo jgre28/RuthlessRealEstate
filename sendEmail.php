@@ -76,7 +76,7 @@ if ((empty($_POST["subject"])) || (empty($_POST["message"])))
                         <td><?php echo $row["gName"]." ".$row["fName"]?></td>
                         <td><?php echo $row["email"]?></td>
 
-                        <td align="center"><input type="checkbox" name="check[]" value=<?php echo $row["email"]?> <?php echo isChecked($row["mailingList"])?>></td>
+                        <td align="center"><input type="checkbox" class="checkbox" name="check[]" value=<?php echo $row["email"]?> <?php echo isChecked($row["mailingList"])?>></td>
 
                     </tr>
                 <?php } ?>

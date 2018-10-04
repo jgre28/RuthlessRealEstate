@@ -230,7 +230,7 @@ switch($strAction)
         ?>
         <form method="post" enctype="multipart/form-data" action="propertyModify.php?propertyID=<?php echo $_GET["propertyID"]; ?>&Action=ConfirmUpdate">
             <div class="container">
-                <h1>Property Details Update</h1>
+                <h2>Property Details Update</h2>
                 <table>
                     <tr>
                         <th>Seller:</th>
@@ -336,7 +336,7 @@ switch($strAction)
                     </tr>
                     <tr>
                         <th>Current Image:</th>
-                        <td><?php echo $row["imageName"]; ?> Delete Image?<input type="checkbox" name="deleteImage" value="Y"> </td>
+                        <td><?php echo $row["imageName"]; ?> Delete Image? <input type="checkbox" class="checkbox" name="deleteImage" value="Y"> </td>
                     </tr>
                     <tr>
                         <th valign="top" >New Image:</th>
@@ -349,9 +349,9 @@ switch($strAction)
                         </td>
                     </tr>
                 </table>
-            </div>
+
             <br>
-            <div class="container">
+
                 <h3>Features</h3>
                 <table>
                     <tr>
@@ -365,7 +365,7 @@ switch($strAction)
                         <tr>
                             <td><?php echo $Features["name"]?></td>
                             <td><input type="text" name="description[]" size="50" value="<?php echo $Features["description"]; ?>"></td>
-                            <td align="center"><input type="checkbox" name="check[]" value="<?php echo $Features["featID"]; ?>" <?php echo isChecked($Features["propID"])?>></td>
+                            <td align="center"><input type="checkbox" class="checkbox" name="check[]" value="<?php echo $Features["featID"]; ?>" <?php echo isChecked($Features["propID"])?>></td>
                         </tr>
 
 
@@ -377,9 +377,9 @@ switch($strAction)
 
 
                 </table>
-            </div>
+
             <br>
-                <div class="container">
+
                 <table>
                     <tr>
                         <td><input type = "submit" value="Update Property"></td>
@@ -537,7 +537,7 @@ case "DELETE":
     $sellerName= mysqli_fetch_row($conn->query("SELECT gName, fName FROM client WHERE $sellerID= clientID"));
     ?>
 <div class="container">
-    <h1>Confirm deletion of the following property record</h1>
+    <h2>Confirm deletion of the following property record</h2>
 
     <table>
         <tr>

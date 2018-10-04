@@ -56,7 +56,7 @@ switch($strAction)
                 ?>
         <div class="container">
             <form method="post" action="typeModify.php?typeID=<?php echo $_GET["typeID"]; ?>&Action=ConfirmUpdate">
-                <h1>Property Type Update</h1>
+                <h2>Property Type Update</h2>
                 <table>
                     <tr>
                         <th>Type Name:</th>
@@ -64,7 +64,7 @@ switch($strAction)
                     </tr>
 
                 </table>
-
+<br>
                 <table>
                     <tr>
                         <td><input type = "submit" value="Update Type"></td>
@@ -91,7 +91,7 @@ switch($strAction)
 
         ?>
         <div class="container">
-            <h1>Confirm deletion of the following property Type</h1>
+            <h2>Confirm deletion of the following property Type</h2>
 
             <table>
                 <tr>
