@@ -66,8 +66,7 @@ $conn = new mysqli($HOST, $UName, $PWord, $DB);
         {
             //display table and checkbox form for deleting
 
-            echo mime_content_type($imgDir."/".$file);
-            echo $file."</b><br />";
+            
 
             $query= "SELECT * FROM property WHERE imageName = '$file'";
             $result = $conn->query($query);
@@ -105,7 +104,8 @@ $conn = new mysqli($HOST, $UName, $PWord, $DB);
                     <td><?php echo $type?></td>
                     <td><?php echo $address?></td>
                     <td><?php echo $name?></td>
-                    <td>checkbox</td>
+                    <td align="center"><input type="checkbox" name="check[]" value=<?php echo $file?>></td>
+
                 </tr>
 
 
@@ -122,7 +122,33 @@ $conn = new mysqli($HOST, $UName, $PWord, $DB);
         break;
 
         case "DELETE":
-            echo "delete donezo";
+
+            if (isset($_POST["check"]))
+            {
+
+                foreach ($_POST["check"] as $file) {
+
+                    $query= "SELECT propertyID FROM property WHERE imageName = '$file'";
+                    $result = $conn->query($query);
+                    if($result->fetch_array()) {
+
+                        $query = "UPDATE property SET imageName = '' WHERE imageName = '$file'";
+                        $result = $conn->query($query);
+                    }
+                    unlink("property_images/".$file);
+
+                }
+                ?>
+                <h2>Images Successfully Deleted</h2>
+                <?php
+
+            }
+            else{
+                ?>
+                <h2>No Images Selected for Deletion</h2>
+                <?php
+            }
+
             ?>
             <input type = "button" value="Back to Images" OnClick="window.location='images.php?Action=DISPLAY'">
 
