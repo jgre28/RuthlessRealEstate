@@ -104,8 +104,14 @@ $result = $conn->query($query);
             <?php } ?>
         </table>
         <input type="submit" value="Update Listing Prices">
+        <br><br>
+        <?php
+        $fileName = explode("/",$_SERVER["SCRIPT_FILENAME"]);
+        ?>
+        <input type = "button" class="codeButton" value="Multiple Property" OnClick="window.location='displayCode.php?fileName=<?php echo end($fileName);?>'">
 
-<?php
+
+        <?php
 break;
 
 case "UPDATE":

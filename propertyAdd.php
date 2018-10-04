@@ -225,6 +225,12 @@ switch($strAction)
                     </tr>
 
                 </table>
+                <br>
+                <?php
+                $fileName = explode("/",$_SERVER["SCRIPT_FILENAME"]);
+                ?>
+                <input type = "button" class="codeButton" value="Property Insert" OnClick="window.location='displayCode.php?fileName=<?php echo end($fileName);?>'">
+
             </div>
         </form>
 

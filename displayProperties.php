@@ -195,6 +195,12 @@ $conn = new mysqli($HOST, $UName, $PWord, $DB);
             </tr>
         <?php } ?>
     </table>
+
+    <br>
+    <?php
+    $fileName = explode("/",$_SERVER["SCRIPT_FILENAME"]);
+    ?>
+    <input type = "button" class="codeButton" value="Property" OnClick="window.location='displayCode.php?fileName=<?php echo end($fileName);?>'">
 </div>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 

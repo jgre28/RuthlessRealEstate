@@ -115,6 +115,12 @@ if ((empty($_POST["subject"])) || (empty($_POST["message"])))
                     </td>
                 </tr>
             </table>
+            <br>
+            <?php
+            $fileName = explode("/",$_SERVER["SCRIPT_FILENAME"]);
+            ?>
+            <input type = "button" class="codeButton" value="Client Email" OnClick="window.location='displayCode.php?fileName=<?php echo end($fileName);?>'">
+
         </div>
     </form>
 

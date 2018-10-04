@@ -71,6 +71,11 @@ $result = $conn->query($query);
 
         <?php } ?>
     </table>
+<br>
+    <?php
+    $fileName = explode("/",$_SERVER["SCRIPT_FILENAME"]);
+    ?>
+    <input type = "button" class="codeButton" value="Types" OnClick="window.location='displayCode.php?fileName=<?php echo end($fileName);?>'">
 
 </div>
 

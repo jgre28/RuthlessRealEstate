@@ -153,6 +153,12 @@ switch($strAction)
                     </tr>
 
                 </table>
+                <br>
+                <?php
+                $fileName = explode("/",$_SERVER["SCRIPT_FILENAME"]);
+                ?>
+                <input type = "button" class="codeButton" value="Client Modify" OnClick="window.location='displayCode.php?fileName=<?php echo end($fileName);?>'">
+
             </div>
         </form>
 
@@ -218,6 +224,12 @@ switch($strAction)
                     <td><input type="button" value="Cancel" OnClick="window.location='displayClients.php'"></td>
                 </tr>
             </table>
+            <br>
+            <?php
+            $fileName = explode("/",$_SERVER["SCRIPT_FILENAME"]);
+            ?>
+            <input type = "button" class="codeButton" value="Client Modify" OnClick="window.location='displayCode.php?fileName=<?php echo end($fileName);?>'">
+
         </div>
         <?php
         break;

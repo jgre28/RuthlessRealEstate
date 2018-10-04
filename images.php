@@ -178,6 +178,11 @@ $conn = new mysqli($HOST, $UName, $PWord, $DB);
 
     }
     ?>
+<br><br>
+        <?php
+        $fileName = explode("/",$_SERVER["SCRIPT_FILENAME"]);
+        ?>
+        <input type = "button" class="codeButton" value="Images" OnClick="window.location='displayCode.php?fileName=<?php echo end($fileName);?>'">
 
 </div>
 

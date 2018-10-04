@@ -85,6 +85,12 @@ switch($strAction)
 
                 </table>
             </form>
+<br>
+            <?php
+            $fileName = explode("/",$_SERVER["SCRIPT_FILENAME"]);
+            ?>
+            <input type = "button" class="codeButton" value="Type Modify" OnClick="window.location='displayCode.php?fileName=<?php echo end($fileName);?>'">
+
         </div>
         <?php
         break;
@@ -118,6 +124,12 @@ switch($strAction)
                     <td><input type="button" value="Cancel" OnClick="window.location='displayTypes.php'"></td>
                 </tr>
             </table>
+<br>
+            <?php
+            $fileName = explode("/",$_SERVER["SCRIPT_FILENAME"]);
+            ?>
+            <input type = "button" class="codeButton" value="Type Modify" OnClick="window.location='displayCode.php?fileName=<?php echo end($fileName);?>'">
+
         </div>
         <?php
         break;
