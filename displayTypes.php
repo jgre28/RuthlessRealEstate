@@ -7,7 +7,7 @@ session_start();
 <header>
     <?php
     if (strcmp($_SESSION["access_status"],"granted")){
-        header("Location: login.php");
+        header("Location: index.php");
     }
     ?>
 
