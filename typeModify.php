@@ -93,7 +93,7 @@ switch($strAction)
         <div class="container">
             <h2>Confirm deletion of the following property Type</h2>
 
-            <table>
+            <table class="table table-striped table-bordered">
                 <tr>
                     <th>Property Type:</th>
                     <td><?php echo $row["typeName"]?></td>

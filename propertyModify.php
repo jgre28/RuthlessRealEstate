@@ -143,8 +143,8 @@ switch($strAction)
 
         ?>
         <div class="container">
-            <h1>Property Details</h1>
-            <table>
+            <h2>Property Details</h2>
+            <table class="table table-striped table-bordered">
                 <tr>
                     <th>Property Type:</th>
                     <td><?php echo $typeName[0]?></td>
@@ -183,13 +183,14 @@ switch($strAction)
                 </tr>
 
             </table>
-        </div>
+
         <br>
-        <div class="container">
+
             <h3>Property Features</h3>
-            <table>
+            <table class="table table-striped table-bordered">
                 <tr>
                     <th>Feature</th>
+
                     <th>Description</th>
 
                 </tr>
@@ -197,7 +198,8 @@ switch($strAction)
                 while ($Features= $propertyFeatures->fetch_assoc())
                 { ?>
                     <tr>
-                        <td><?php echo $Features["name"]?></td>
+                        <td><?php echo $Features["name"]?>:</td>
+
                         <td><?php echo $Features["description"]?></td>
                     </tr>
 
@@ -207,9 +209,9 @@ switch($strAction)
                 ?>
 
             </table>
-        </div>
+
         <br>
-        <div class="container">
+
             <form>
                 <input type = "button" value="Return to List" OnClick="window.location='displayProperties.php'">
             </form>
@@ -539,7 +541,7 @@ case "DELETE":
 <div class="container">
     <h2>Confirm deletion of the following property record</h2>
 
-    <table>
+    <table class="table table-striped table-bordered">
         <tr>
             <th>Listing Date:</th>
             <td><?php echo date("d/m/Y",strtotime($row["listingDate"]))?></td>

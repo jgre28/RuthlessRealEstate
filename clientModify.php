@@ -180,7 +180,7 @@ switch($strAction)
         <div class="container">
             <h2>Confirm deletion of the following client record</h2>
 
-            <table>
+            <table class="table table-striped table-bordered">
                 <tr>
                     <th>Name:</th>
                     <td><?php echo $row["gName"]." ".$row["fName"]?></td>
