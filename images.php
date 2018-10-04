@@ -33,14 +33,6 @@
 include("connection.php");
 $conn = new mysqli($HOST, $UName, $PWord, $DB);
 
-function _mime_content_type($filename) {
-    //orignal mime content type not supported on triton so redeclared here
-    $finfo = finfo_open( FILEINFO_MIME_TYPE );
-    $mime_type = finfo_file( $finfo, $filename );
-    finfo_close( $finfo );
-    return $mime_type;
-}
-
 
 
 ?>
@@ -73,7 +65,15 @@ function _mime_content_type($filename) {
         if ($file == "." || $file == "..") {
             continue;
         }
-        $fileType=_mime_content_type($imgDir."/".$file);
+
+
+
+        $finfo = new finfo(FILEINFO_MIME);
+        $data  = $finfo->file($imgDir."/".$file);
+        $data = explode(";", $data);
+
+        $fileType = $data[0];
+
         if ($fileType == "image/png" || $fileType == "image/jpeg" || $fileType == "image/bmp")
         {
             //display table and checkbox form for deleting
