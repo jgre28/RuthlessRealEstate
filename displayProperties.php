@@ -143,7 +143,12 @@ $conn = new mysqli($HOST, $UName, $PWord, $DB);
 
 
         ?>
-    <a href="propertyAdd.php?Action=INSERT">Add New Property</a>
+
+    <table align="right">
+        <tr>
+            <td><input type = "button" class="button" value="Add Property" OnClick="window.location='propertyAdd.php?Action=INSERT'"></td>
+        </tr>
+    </table>
     <table class="table table-striped table-bordered">
         <tr>
             <th>Listing Date</th>

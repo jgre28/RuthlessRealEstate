@@ -1,4 +1,37 @@
+<?php
+session_start();
+
+?>
+
 <html>
+<header>
+    <?php
+    if (strcmp($_SESSION["access_status"],"granted")){
+        header("Location: index.php");
+    }
+    ?>
+
+
+    <div class="header">
+        <h1>RUTHLESS REAL ESTATE</h1>
+    </div>
+    <div class="sideMenu" >
+
+
+        <table align="center">
+            <tr><td><input type="button" class="button" value="Home"  OnClick="window.location='index.php'"></td></tr>
+            <tr><td><input type="button" class="button" value="Properties"  OnClick="window.location='displayProperties.php'"></td></tr>
+            <tr><td><input type="button" class="button" value="Clients" OnClick="window.location='displayClients.php'"></td></tr>
+            <tr><td><input type="button" class="button" value="Property Types"  OnClick="window.location='displayTypes.php'"></td></tr>
+            <tr><td><input type="button" class="button" value="Features"  OnClick="window.location='displayFeatures.php'"></td></tr>
+            <tr><td><input type="button" class="button" value="Multiple Property"  OnClick="window.location='multipleProperty.php?Action=EDIT'"></td></tr>
+            <tr><td><input type="button" class="button" value="Images"  OnClick="window.location='images.php?Action=DISPLAY'"></td></tr>
+
+
+        </table>
+
+    </div>
+</header>
 <body>
 
 <?php
@@ -86,7 +119,7 @@ class CreatePDF
 
 ?>
 
-
+<div class="container">
 <h1>Create PDF</h1>
 <?php
 
@@ -110,13 +143,22 @@ $table = $PDF->ClientPDF($header, $headerWidth, $allRows);
 
 
 echo $table;
-echo "<br />";
-echo "<a href='PDFS/Customers.pdf'>Click here to see PDF</a>";
+
+
 
 
 
 ?>
 
+    <input type = "button" class="button" value="View PDF" OnClick="window.location='PDFS/Customers.pdf'">
+    <input type = "button" class="button" value="Back to Clients" OnClick="window.location='displayClients.php'">
+    <br><br>
+    <?php
+    $fileName = explode("/",$_SERVER["SCRIPT_FILENAME"]);
+    ?>
+    <input type = "button" class="codeButton" value="Client PDF" OnClick="window.location='displayCode.php?fileName=<?php echo end($fileName);?>'">
+
+</div>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
 <script

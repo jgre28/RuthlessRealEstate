@@ -138,8 +138,12 @@ $conn = new mysqli($HOST, $UName, $PWord, $DB);
     }
     ?>
         </table>
-        <input type = "submit" value="Delete Images">
 
+        <table align="right">
+            <tr>
+                <td><input type = "submit" class="button" value="Delete Images"></td>
+            </tr>
+        </table>
         <?php
         break;
 
@@ -172,7 +176,7 @@ $conn = new mysqli($HOST, $UName, $PWord, $DB);
             }
 
             ?>
-            <input type = "button" value="Back to Images" OnClick="window.location='images.php?Action=DISPLAY'">
+            <input type = "button" class="button" value="Back to Images" OnClick="window.location='images.php?Action=DISPLAY'">
 
         <?php
 

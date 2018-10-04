@@ -51,7 +51,12 @@ $result = $conn->query($query);
 
 <div class="container">
     <h2>Property Types</h2>
-    <a href="typeAdd.php?Action=INSERT">Add new type</a>
+
+    <table align="right">
+        <tr>
+            <td><input type = "button" class="button" value="Add New Type" OnClick="window.location='typeAdd.php?Action=INSERT'"></td>
+        </tr>
+    </table>
     <table class="table table-striped table-bordered">
         <tr>
             <th>Type</th>

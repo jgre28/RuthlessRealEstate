@@ -71,7 +71,7 @@ if ((empty($_POST["subject"])) || (empty($_POST["message"])))
     <form method="post" action="sendEmail.php">
         <div class="container">
             <h2>Send Email</h2>
-            <input type = "button" value="Return to Client Listing" OnClick="window.location='displayClients.php'">
+            <input type = "button" class="button" value="Back to Clients" OnClick="window.location='displayClients.php'">
             <br>
             <br>
 

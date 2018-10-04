@@ -3,7 +3,28 @@ FIT2104 to do
 make main page --- need centre content
 data entry validation on all pages --- done basics on property pages
 
-code pages
+documentation page:
+1. Details of the authors: name, student ID and date of submission.
+
+2. The username and password for the MySQL database account used for the
+assignment. Marks will be deducted for failing to include this.
+
+3. A valid username and password to access the site (other than the home and
+documentation pages).
+
+4. A link to a document which contains your Create Table statements. These
+must include Primary key, Foreign key and Column constraints.
+
+5. A link to a document which contains the data currently (at the time of
+submission) in the database. Up to 20 marks will be deducted if there is not
+sufficient data in your tables to test the functionality of your site. DO NOT
+INCLUDE THE INSERT STATEMENTS - YOU WILL LOSE MARKS FOR
+THIS!!
+NOTE: Do not dynamically retrieve this data from the database for
+display.
+
+6. A link to a document which contains details of which group member
+    completed which part(s) of the application
 
 
 

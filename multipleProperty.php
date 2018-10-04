@@ -103,7 +103,12 @@ $result = $conn->query($query);
                 </tr>
             <?php } ?>
         </table>
-        <input type="submit" value="Update Listing Prices">
+
+        <table align="right">
+            <tr>
+                <td><input type="submit" class="button" value="Update Prices"></td>
+            </tr>
+        </table>
         <br><br>
         <?php
         $fileName = explode("/",$_SERVER["SCRIPT_FILENAME"]);
@@ -142,7 +147,9 @@ case "UPDATE":
     }
     ?>
     <h2>Listing Prices Successfully Updated</h2>
-    <input type = "button" value="Back to Edit Multiple Properties" OnClick="window.location='multipleProperty.php?Action=EDIT'">
+    <input type = "button" class="button" value="Back to Listing" OnClick="window.location='multipleProperty.php?Action=EDIT'">
+
+
         <?php
     break;
 }

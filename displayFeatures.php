@@ -51,7 +51,12 @@ $result = $conn->query($query);
 
 <div class="container">
     <h2>Property Feature Types</h2>
-    <a href="featureAdd.php?Action=INSERT">Add New Feature Type</a>
+
+    <table align="right">
+        <tr>
+            <td><input type = "button" class="button" value="Add New Feature" OnClick="window.location='featureAdd.php?Action=INSERT'"></td>
+        </tr>
+    </table>
     <table class="table table-striped table-bordered">
         <tr>
             <th>Feature</th>

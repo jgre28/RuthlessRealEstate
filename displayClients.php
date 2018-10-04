@@ -49,10 +49,15 @@ $result = $conn->query($query);
 ?>
 <div class="container">
     <h2>Clients Table</h2>
-    <a href="clientAdd.php?Action=INSERT">Add New Client</a>
-    <a href="clientPDF.php">Create PDF document</a>
-    <br>
-    <a href="sendEmail.php">Send Group Email</a>
+
+<table align="right">
+    <tr>
+        <td><input type = "button" class="button" value="Add New Client" OnClick="window.location='clientAdd.php?Action=INSERT'"></td>
+        <td><input type = "button" class="button" value="Create PDF Doc" OnClick="window.location='clientPDF.php'"></td>
+        <td><input type = "button" class="button" value="Send Email" OnClick="window.location='sendEmail.php'"></td>
+</tr>
+</table>
+
     <table class="table table-striped table-bordered">
         <tr>
             <th>Client</th>
