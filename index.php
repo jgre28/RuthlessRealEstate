@@ -4,7 +4,7 @@ session_start();
 ?>
 <html>
 <header>
-    
+
     <div class="header">
         <h1>RUTHLESS REAL ESTATE</h1>
     </div>

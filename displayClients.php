@@ -50,6 +50,7 @@ $result = $conn->query($query);
 <div class="container">
     <h2>Clients Table</h2>
     <a href="clientAdd.php?Action=INSERT">Add New Client</a>
+    <a href="clientPDF.php">Create PDF document</a>
     <br>
     <a href="sendEmail.php">Send Group Email</a>
     <table class="table table-striped table-bordered">
