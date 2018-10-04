@@ -73,7 +73,7 @@ function _mime_content_type($filename) {
         if ($file == "." || $file == "..") {
             continue;
         }
-        $fileType=mime_content_type($imgDir."/".$file);
+        $fileType=_mime_content_type($imgDir."/".$file);
         if ($fileType == "image/png" || $fileType == "image/jpeg" || $fileType == "image/bmp")
         {
             //display table and checkbox form for deleting
