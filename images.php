@@ -34,14 +34,14 @@ include("connection.php");
 $conn = new mysqli($HOST, $UName, $PWord, $DB);
 
 function _mime_content_type($filename) {
-    $result = new finfo();
-
-    if (is_resource($result) === true) {
-        return $result->file($filename, FILEINFO_MIME_TYPE);
-    }
-
-    return false;
+    //orignal mime content type not supported on triton so redeclared here
+    $finfo = finfo_open( FILEINFO_MIME_TYPE );
+    $mime_type = finfo_file( $finfo, $filename );
+    finfo_close( $finfo );
+    return $mime_type;
 }
+
+
 
 ?>
 
