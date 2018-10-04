@@ -6,14 +6,9 @@ login security
 code pages
 
 
-upload images for property
-
-
-
 
 --pdf doc for client details
 
 
---property multiple edit page
 
---images page
+

@@ -66,7 +66,7 @@ $conn = new mysqli($HOST, $UName, $PWord, $DB);
         {
             //display table and checkbox form for deleting
 
-            
+
 
             $query= "SELECT * FROM property WHERE imageName = '$file'";
             $result = $conn->query($query);
