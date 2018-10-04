@@ -1,16 +1,5 @@
-<?php
-session_start();
-
-?>
-
 <html>
 <header>
-    <?php
-    if (strcmp($_SESSION["access_status"],"granted")){
-        header("Location: index.php");
-    }
-    ?>
-
 
     <div class="header">
         <h1>RUTHLESS REAL ESTATE</h1>
@@ -35,67 +24,25 @@ session_start();
 </header>
 <body>
 
-
 <?php
 /**
  * Created by PhpStorm.
  * User: Jordan
- * Date: 30/09/2018
- * Time: 3:19 PM
+ * Date: 5/10/2018
+ * Time: 8:21 AM
  */
 
-include("connection.php");
-$conn = new mysqli($HOST, $UName, $PWord, $DB)
-or die("Couldn't log on to database");
+?>
 
-$strAction = $_GET["Action"];
-
-
-switch($strAction)
-{
-    case "INSERT":
-        ?>
+<div class="container">
+    <h2>Documentation Page</h2>
 
 
-        <form method="post" action="featureAdd.php?Action=ConfirmInsert">
-            <div class="container">
-                <h2>New Feature Type</h2>
-                <table>
-                    <tr>
-                        <th>Feature:</th>
-                        <td><input type="text" name="newFeature" size="50"></td>
-                    </tr>
-                </table>
 
-            <br>
 
-                <table>
-                    <tr>
-                        <td><input type = "submit" value="Add Feature"></td>
-                        <td><input type="button" value="Return to List" OnClick="window.location='displayFeatures.php'"></td>
-                    </tr>
 
-                </table>
-                <br>
-                <?php
-                $fileName = explode("/",$_SERVER["SCRIPT_FILENAME"]);
-                ?>
-                <input type = "button" class="codeButton" value="Feature Insert" OnClick="window.location='displayCode.php?fileName=<?php echo end($fileName);?>'">
 
-            </div>
-        </form>
-
-        <?php
-        break;
-    case "ConfirmInsert":
-        {
-            $query="INSERT INTO feature(featureID, featureName) values (featureID, '$_POST[newFeature]')";
-            $result = $conn->query(($query));
-            header("Location: displayFeatures.php");
-        }
-        break;
-}?>
-
+</div>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
