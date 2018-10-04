@@ -67,14 +67,12 @@ $conn = new mysqli($HOST, $UName, $PWord, $DB);
         }
 
 
+        $data= explode(".", $file);
+        $ext = end($data);
+        echo $ext;
 
-        $finfo = new finfo(FILEINFO_MIME);
-        $data  = $finfo->file($imgDir."/".$file);
-        $data = explode(";", $data);
 
-        $fileType = $data[0];
-
-        if ($fileType == "image/png" || $fileType == "image/jpeg" || $fileType == "image/bmp")
+        if ($ext == "jpg" || $ext == "jpeg" || $ext == "png" || $ext == "bmp")
         {
             //display table and checkbox form for deleting
 
