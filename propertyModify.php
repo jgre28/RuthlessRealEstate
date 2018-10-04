@@ -1,23 +1,5 @@
 <html>
-<header>
-    <div class="header">
-        <h1>RUTHLESS REAL ESTATE</h1>
-    </div>
-    <div class="sideMenu" >
 
-
-        <table align="center">
-            <tr><td><input type="button" class="button" value="Home"  OnClick="window.location='index.php'"></td></tr>
-            <tr><td><input type="button" class="button" value="Properties"  OnClick="window.location='displayProperties.php'"></td></tr>
-            <tr><td><input type="button" class="button" value="Clients" OnClick="window.location='displayClients.php'"></td></tr>
-            <tr><td><input type="button" class="button" value="Property Types"  OnClick="window.location='displayTypes.php'"></td></tr>
-            <tr><td><input type="button" class="button" value="Features"  OnClick="window.location='displayFeatures.php'"></td></tr>
-
-
-        </table>
-
-    </div>
-</header>
 <body>
 
 <?php
@@ -417,8 +399,11 @@ switch($strAction)
                     else {
 
                         $imgName=$_FILES["imageName"]["name"];
-                        unlink("property_images/".$row["imageName"]);
-                        $imgName="";
+
+                        if(!empty($row["imageName"]))
+                        {
+                            unlink("property_images/" . $row["imageName"]);
+                        }
 
                     }
                 }

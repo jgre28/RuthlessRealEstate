@@ -1,7 +1,7 @@
 FIT2104 to do
 
-make main page
-data entry validation on all pages
+make main page --- need centre content
+data entry validation on all pages --- done basics on property pages
 login security
 code pages
 
