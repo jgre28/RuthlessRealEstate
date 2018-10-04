@@ -36,11 +36,50 @@
 
 <div class="container">
     <h2>Documentation Page</h2>
+    <table class="table2 table-striped table-bordered">
+        <tr>
+            <th>Name</th>
+            <th>Student ID</th>
+        </tr>
+        <tr>
+            <td>Jordan Gregory</td>
+            <td>25099159</td>
+        </tr>
+        <tr>
+            <td>Peter Paxinos</td>
+            <td>27023737</td>
+        </tr>
+    </table>
 
 
+<p><b>Date Submitted:</b> 05/10/2018</p>
+<p><b>MySQL Database account used</b>
+    <table class="table2 table-striped table-bordered">
+        <tr>
+            <th>Username</th>
+            <th>Password</th>
+        </tr>
+        <tr>
+            <td>s25099159</td>
+            <td>monash00</td>
+        </tr>
+    </table>
+    </p>
 
-
-
+    <p><b>Website user account</b>
+    <table class="table2 table-striped table-bordered">
+        <tr>
+            <th>Username</th>
+            <th>Password</th>
+        </tr>
+        <tr>
+            <td>RobinB</td>
+            <td>asdf</td>
+        </tr>
+    </table>
+    </p>
+    <p><b>Create Table Statements</b><input type = "button" class="codeButton" value="Table Statements" OnClick="window.location='displayCode.php?fileName=createTables.ddl'">
+    </p>
 
 </div>
 

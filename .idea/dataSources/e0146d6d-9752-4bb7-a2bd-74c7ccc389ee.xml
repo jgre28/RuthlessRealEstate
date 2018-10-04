@@ -1194,7 +1194,6 @@
       <RefTableName>type</RefTableName>
       <RefColNames>typeID</RefColNames>
       <OnUpdate>cascade</OnUpdate>
-      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <column id="276" parent="230" name="propertyID">
       <Position>1</Position>
