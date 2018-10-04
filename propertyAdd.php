@@ -227,7 +227,11 @@ switch($strAction)
                 $_FILES["imageName"]["type"] == "image/jpeg" ||
                 $_FILES["imageName"]["type"] == "image/bmp" )
             {
-                $upFile = "property_images/".$_FILES["imageName"]["name"];
+
+                $imgName=explode(" ",$_FILES["imageName"]["name"]);
+                $imgName=implode("_",$imgName);
+
+                $upFile = "property_images/".$imgName;
 
                 if (!empty($_FILES["imageName"]["name"]))
                 {
@@ -236,11 +240,7 @@ switch($strAction)
                         echo "ERROR: Could not move image into directory";
                         $imgName="";
                     }
-                    else {
-
-                        $imgName=$_FILES["imageName"]["name"];
-
-                    }
+                    
                 }
             }
 
