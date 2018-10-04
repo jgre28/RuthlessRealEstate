@@ -78,8 +78,83 @@
         </tr>
     </table>
     </p>
-    <p><b>Create Table Statements</b><input type = "button" class="codeButton" value="Table Statements" OnClick="window.location='displayCode.php?fileName=createTables.ddl'">
+    <p><b>Create Table Statements</b><input type = "button" class="button" value="Table Statements" OnClick="window.location='displayCode.php?fileName=createTables.ddl'">
     </p>
+
+    </p>
+    <p><b>Database Data</b><input type = "button" class="button" value="Data" OnClick="window.location='databaseTables.php'">
+    </p>
+
+    <p><b>Group MemberParticipation</b>
+    <table class="table2 table-striped table-bordered">
+        <tr>
+            <th>Component</th>
+            <th>Jordan</th>
+            <th>Peter</th>
+        </tr>
+        <tr>
+            <td>Property Pages</td>
+            <td>60%</td>
+            <td>40%</td>
+        </tr>
+        <tr>
+            <td>Property Feature Modification</td>
+            <td>80%</td>
+            <td>20%</td>
+        </tr>
+        <tr>
+            <td>Client Pages</td>
+            <td>50%</td>
+            <td>50%</td>
+        </tr>
+        <tr>
+            <td>Email Functionality</td>
+            <td>50%</td>
+            <td>50%</td>
+        </tr>
+        <tr>
+            <td>PDF Creation</td>
+            <td>60%</td>
+            <td>40%</td>
+        </tr>
+        <tr>
+            <td>Type Pages</td>
+            <td>50%</td>
+            <td>50%</td>
+        </tr>
+        <tr>
+            <td>Feature Pages</td>
+            <td>50%</td>
+            <td>50%</td>
+        </tr>
+        <tr>
+            <td>Multiple Property Modification Page</td>
+            <td>70%</td>
+            <td>30%</td>
+        </tr>
+        <tr>
+            <td>Images Page</td>
+            <td>70%</td>
+            <td>30%</td>
+        </tr>
+        <tr>
+            <td>Security</td>
+            <td>50%</td>
+            <td>50%</td>
+        </tr>
+        <tr>
+            <td>CSS styling</td>
+            <td>50%</td>
+            <td>50%</td>
+        </tr>
+
+
+
+
+    </table>
+    </p>
+
+
 
 </div>
 

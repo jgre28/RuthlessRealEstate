@@ -3,21 +3,6 @@ FIT2104 to do
 make main page --- need centre content
 data entry validation on all pages --- done basics on property pages
 
-documentation page:
-
-
-
-5. A link to a document which contains the data currently (at the time of
-submission) in the database. Up to 20 marks will be deducted if there is not
-sufficient data in your tables to test the functionality of your site. DO NOT
-INCLUDE THE INSERT STATEMENTS - YOU WILL LOSE MARKS FOR
-THIS!!
-NOTE: Do not dynamically retrieve this data from the database for
-display.
-
-6. A link to a document which contains details of which group member
-    completed which part(s) of the application
-
 
 
 --pdf doc for client details
