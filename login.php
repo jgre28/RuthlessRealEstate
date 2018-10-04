@@ -2,16 +2,8 @@
 session_start();
 
 ?>
-
 <html>
 <header>
-    <?php
-    if (strcmp($_SESSION["access_status"],"granted")){
-        header("Location: login.php");
-    }
-    ?>
-
-
     <div class="header">
         <h1>RUTHLESS REAL ESTATE</h1>
     </div>
@@ -32,63 +24,78 @@ session_start();
 
     </div>
 </header>
-<body>
-
 
 <?php
 /**
  * Created by PhpStorm.
  * User: Jordan
- * Date: 30/09/2018
- * Time: 3:19 PM
+ * Date: 4/10/2018
+ * Time: 2:26 PM
  */
 
 include("connection.php");
 $conn = new mysqli($HOST, $UName, $PWord, $DB)
 or die("Couldn't log on to database");
 
-$strAction = $_GET["Action"];
+?>
 
-
-switch($strAction)
+<body>
+<?php
+if(empty($_POST["uName"]))
 {
-    case "INSERT":
+
+
+    ?>
+    <div class="container">
+    <form method="post" action="login.php">
+        <table >
+            <tr>
+                <th>Username:</th>
+                <td><input type="text" name="uName" size="12" maxlength="10"></td>
+            </tr>
+            <tr>
+                <th>Password:</th>
+                <td><input type="password" name="pWord" size="12" maxlength="10"></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Login" name="Action">
+                    <input type="reset" value="Reset">
+                </td>
+            </tr>
+        </table>
+    </form>
+    </div>
+    <?php
+}
+else
+{
+
+    $query="SELECT gName, fName FROM authenticate WHERE uName = '$_POST[uName]' AND pword = '$_POST[pWord]'";
+
+    $result = $conn->query(($query));
+
+    if($result->fetch_array())
+    {
+        $query="SELECT gName, fName FROM authenticate WHERE uName = '$_POST[uName]' AND pword = '$_POST[pWord]'";
+
+        $result = $conn->query(($query));
+        $name = mysqli_fetch_array($result);
+
         ?>
-
-
-        <form method="post" action="featureAdd.php?Action=ConfirmInsert">
-            <div class="container">
-                <h2>New Feature Type</h2>
-                <table>
-                    <tr>
-                        <th>Feature:</th>
-                        <td><input type="text" name="newFeature" size="50"></td>
-                    </tr>
-                </table>
-
-            <br>
-
-                <table>
-                    <tr>
-                        <td><input type = "submit" value="Add Feature"></td>
-                        <td><input type="button" value="Return to List" OnClick="window.location='displayFeatures.php'"></td>
-                    </tr>
-
-                </table>
-            </div>
-        </form>
-
+        <div class="container">
+        <h2>Welcome <?php echo $name[0]." ".$name[1]?></h2>
+        </div>
         <?php
-        break;
-    case "ConfirmInsert":
-        {
-            $query="INSERT INTO feature(featureID, featureName) values (featureID, '$_POST[newFeature]')";
-            $result = $conn->query(($query));
-            header("Location: displayFeatures.php");
-        }
-        break;
-}?>
+        $_SESSION["access_status"] = "granted";
 
+    }
+    else
+    {
+        echo "Sorry, login details incorrect";
+    }
+}
+?>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 

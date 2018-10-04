@@ -1,5 +1,17 @@
+<?php
+session_start();
+
+?>
+
 <html>
 <header>
+    <?php
+    if (strcmp($_SESSION["access_status"],"granted")){
+        header("Location: login.php");
+    }
+    ?>
+
+
     <div class="header">
         <h1>RUTHLESS REAL ESTATE</h1>
     </div>
