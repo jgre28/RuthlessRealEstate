@@ -82,7 +82,7 @@ $conn = new mysqli($HOST, $UName, $PWord, $DB);
 
         $data= explode(".", $file);
         $ext = end($data);
-        echo $ext;
+        
 
 
         if ($ext == "jpg" || $ext == "jpeg" || $ext == "png" || $ext == "bmp")
