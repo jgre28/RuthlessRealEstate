@@ -58,8 +58,8 @@ class CreatePDF
         $pdf->setHeaderFont(array('helvetica', 'B', 16));
 
         //set margins
-        //$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
-        //$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+        $pdf->SetMargins(10, 20, 10);
+        $pdf->SetHeaderMargin(10);
 
         //set image scale factor
         //$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
@@ -69,8 +69,11 @@ class CreatePDF
 
         $pdf->Ln();
 
-        $table = '<table class="table table-striped table-bordered">';
-        $table.='<tr>';
+
+        $table = '<table  cellpadding="5" cellspacing="5" border="1">';
+        //$table = '<table class="table table-striped table-bordered">';
+        //$table.='<tr>';
+        $table.='<tr bgcolor="#5e84c4">';
         for($i = 0; $i < sizeof($header); ++$i)
         {
 
@@ -134,7 +137,7 @@ $allRows=mysqli_fetch_all($result,MYSQLI_ASSOC);
 //Column titles
 $header = array('Name', 'Address', 'Email', 'Contact');
 //Column Widths
-$headerWidth=array(150,300,250,200);
+$headerWidth=array(120,270,220,150);
 
 //create new instance of my CreatePDF class
 $PDF = new CreatePDF();
